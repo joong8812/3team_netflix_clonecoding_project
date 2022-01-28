@@ -185,6 +185,7 @@ __pypackages__/
 
 # DB
 db.sqlite3
+migrations
 
 # Pipenv
 Pipfile

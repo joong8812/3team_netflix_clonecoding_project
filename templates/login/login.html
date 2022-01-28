@@ -49,7 +49,7 @@
         flex-direction: column;
     }
     #login-box #login-wrapper #login-info {
-        margin-bottom: 34px;
+        /* margin-bottom: 34px; */
     }
     #login-box #login-wrapper #login-info .form-check-input:checked {
         background-color: rgb(0, 92, 46);
@@ -95,7 +95,8 @@
         <div id="login-box">
             <div id="login-wrapper">
                 <h1>로그인</h1>
-                <form id="login-info">
+                <form id="login-info" action="/login/" method="POST">
+                    {% csrf_token %}
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="email" name="email" placeholder="이메일">
                         <label for="email">이메일</label>
@@ -110,10 +111,10 @@
                             내 아이디 기억하기
                         </label>
                     </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-login">로그인</button>
+                    </div>
                 </form>
-                <div class="mb-3">
-                    <button type="button" class="btn btn-login">로그인</button>
-                </div>
                 <div class="mb-3">
                     <button type="button" class="btn btn-naver">네이버로 로그인</button>
                 </div>
@@ -123,5 +124,6 @@
             </div>
         </div>
     </div>
+    {{ error }}
 </div>
 {% endblock %}
