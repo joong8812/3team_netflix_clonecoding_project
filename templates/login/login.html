@@ -51,7 +51,7 @@
 
     #login-box #login-wrapper #login-info #form-err-msg {
         /* margin-bottom: 40px; */
-        height:36px;
+        height:30px;
     }
 
     #form-err-msg > b {
@@ -83,6 +83,12 @@
         border-color: rgb(24, 206, 96);
     }
 
+    .btn-kakao {
+        color: #fff;
+        background-color: rgb(255, 230, 55);
+        border-color: rgb(255, 230, 55);
+    }
+
     #notice-signup-wrapper>p>span {
         color: #737373;
     }
@@ -103,17 +109,6 @@
         const emailElement = document.querySelector('#email');
         const pwdElement = document.querySelector('#password');
         const loginForm = document.querySelector('#login-info');
-
-        // 이메일을 입력하면 에러 메시지가 사라진다
-        emailElement.addEventListener('keyup', (event) => {
-            const errMsg = document.querySelector('#form-err-msg b');
-            errMsg.textContent = "";
-        });
-        // 비밀번호을 입력하면 에러 메시지가 사라진다
-        pwdElement.addEventListener('keyup', (event) => {
-            const errMsg = document.querySelector('#form-err-msg b');
-            errMsg.textContent = "";
-        });
 
         // 쿠키에 value(이메일) 정보 저장
         const setCookie = (name, value, expiredays) => {
@@ -162,9 +157,11 @@
             document.querySelector('#remember-my-id').checked = true;
         }
     });
+
 </script>
 {% endblock %}
 
+{% load socialaccount %}
 {% block content %}
 <div id="main">
     <div id="header">
@@ -192,17 +189,30 @@
                             내 이메일 기억하기
                         </label>
                     </div>
-                    <div id="form-err-msg"><b>{{ error }}</b></div>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div id="form-err-msg"><b>{{ message }}</b></div>
+                        {% endfor %}
+                    {% endif %}
                     <div class="mb-3">
                         <button type="submit" class="btn btn-login">로그인</button>
                     </div>
-                    <div class="mb-3">
-                        <button type="button" class="btn btn-naver">네이버로 로그인</button>
-                    </div>
-                    <div id="notice-signup-wrapper">
-                        <p><span>오늘 처음이신가요? </span><a href="#">지금 회원가입 '딸깍'</a></p>
-                    </div>
                 </form>
+                <div class="mb-3">
+                    <form method="post" action = {% provider_login_url "naver" %}>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-naver">네이버로 로그인</button>
+                    </form>
+                </div>
+                <div class="mb-3">
+                    <form method="post" action = {% provider_login_url "kakao" %}>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-kakao">카카오로 로그인</button>
+                    </form>
+                </div>
+                <div id="notice-signup-wrapper">
+                    <p><span>오늘 처음이신가요? </span><a href="#">지금 회원가입 '딸깍'</a></p>
+                </div>
             </div>
         </div>
     </div>
