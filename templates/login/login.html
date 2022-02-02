@@ -191,7 +191,9 @@
                     </div>
                     {% if messages %}
                         {% for message in messages %}
-                        <div id="form-err-msg"><b>{{ message }}</b></div>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %} <!-- WARNING 메시지만 보여준다 -->
+                            <div id="form-err-msg"><b>{{ message }}</b></div>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                     <div class="mb-3">
