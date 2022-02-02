@@ -89,6 +89,12 @@
         border-color: rgb(255, 230, 55);
     }
 
+    .btn-facebook {
+        color: #fff;
+        background-color: rgb(61, 91, 157);
+        border-color: rgb(61, 91, 157);
+    }
+
     #notice-signup-wrapper>p>span {
         color: #737373;
     }
@@ -210,6 +216,12 @@
                     <form method="post" action = {% provider_login_url "kakao" %}>
                         {% csrf_token %}
                         <button type="submit" class="btn btn-kakao">카카오로 로그인</button>
+                    </form>
+                </div>
+                <div class="mb-3">
+                    <form method="post" action = {% provider_login_url "facebook" method="oauth2"%}>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-facebook">페이스북으로 로그인</button>
                     </form>
                 </div>
                 <div id="notice-signup-wrapper">

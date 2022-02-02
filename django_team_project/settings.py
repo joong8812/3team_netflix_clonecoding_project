@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # ... 소셜로그인을 할 제공자 리스트를 아래에 포함 
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 SITE_ID=1
@@ -166,3 +167,25 @@ LOGIN_REDIRECT_URL = '/main'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/login'
 # Get으로도 logout 요청
 ACCOUNT_LOGOUT_ON_GET = True
+
+# 페이스북 유저 요청 정보
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'ko_KR',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v7.0',
+    }
+}
