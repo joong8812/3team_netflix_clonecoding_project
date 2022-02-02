@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib import auth
+from django.contrib import auth, messages
 
 
 # Create your views here.
@@ -14,7 +14,8 @@ def login_view(request):
             auth.login(request, me)
             return redirect('/main')  # 로그인 후 유저네임을 응답한다
         else:
-            return render(request, 'login/login.html', {'error': '유저이름 혹은 패스워드를 확인 해 주세요'})
+            messages.add_message(request, messages.WARNING, '유저이름 혹은 패스워드를 확인 해 주세요')
+            return render(request, 'login/login.html')
 
     elif request.method == 'GET':
             return render(request, 'login/login.html')

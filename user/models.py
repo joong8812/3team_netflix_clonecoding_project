@@ -10,6 +10,8 @@ class UserModel(AbstractUser):
 
     username = models.CharField(
         max_length=150,
+        blank=True,
+        null=True,
     )
     email = models.EmailField(
         verbose_name='email address',
@@ -20,4 +22,4 @@ class UserModel(AbstractUser):
     follow = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followee')
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']

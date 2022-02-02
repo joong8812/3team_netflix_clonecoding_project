@@ -38,7 +38,18 @@ INSTALLED_APPS = [
     'user',
     'storages',
     'login',
+    # Allauth를 위한 Apps 
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount', 
+    # ... 소셜로그인을 할 제공자 리스트를 아래에 포함 
+    'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.facebook',
 ]
+
+SITE_ID=1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -143,3 +154,38 @@ AWS_ACCESS_KEY_ID = secrets['AWS']['ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = secrets['AWS']['SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = secrets['AWS']['STORAGE_BUCKET_NAME']
 AWS_DEFAULT_ACL = 'public-read' # 올린 파일을 누구나 읽을 수 있게 지정합니다!
+
+#로그인과정전에 누구한테 맡길지
+AUTHENTICATION_BACKENDS=[
+    'django.contrib.auth.backends.ModelBackend',#기본장고 유저
+    'allauth.account.auth_backends.AuthenticationBackend',#소셜로그인 인증체계
+]
+
+# 로그인 후 redirect route
+LOGIN_REDIRECT_URL = '/main'
+# 로그아웃 후 redirect route
+ACCOUNT_LOGOUT_REDIRECT_URL = '/login'
+# Get으로도 logout 요청
+ACCOUNT_LOGOUT_ON_GET = True
+
+# 페이스북 유저 요청 정보
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'ko_KR',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v7.0',
+    }
+}
