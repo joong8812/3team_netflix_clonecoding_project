@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/*form-container*/
+.form-container {
+    border: #e6b129 solid 1px;
+    border-radius: 5%;
+    box-shadow: 0 0 20px 2px #ffb122;
+    margin : 50px auto;
+    width: 40%;
+    height: 700px;
+}
+
+.form-grp{
+    margin: 0 auto;
+    padding: 2% 13% 2% 13%;
+    position: relative;
+}
+
+.form-grp .fa{
+    position: absolute;
+    top: 28%;
+    right: 16%;
+    display: none; /* 해당할때만 보여주려고 */
+}
+
+.fa-times{ color: red; }
+.fa-check{ color: green; }
+
+.form-grp small{
+    margin-left: 3px;
+    visibility: hidden;
+    color: red;
+}
+
+input[type=email], input[type=password], input[type=text]{
+    padding: 12px;
+    width: 100%;
+    border: 0;
+    border-radius: 15px;
+    font-size: 15px;
+    background-color: rgba(212, 209, 206, 0.28);
+}
+
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus{
+    outline: 0;
+}
+
+@media screen and (max-width: 1270px) {
+    .b_button {
+        padding-top: 25%;
+        margin-right: 2%;
+    }
+}
+
+.b_button {
+        margin-top: 6%;
+    }
+
+.back {
+    width: 100%;
+    height: 70px;
+    padding: 0 5px 5px 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button_base {
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+}
+
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b08_3d_pushback {
+    -webkit-perspective: 500px;
+    -webkit-transform-style: preserve-3d;
+}
+
+.b08_3d_pushback div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    -webkit-box-sizing: border-box;
+    pointer-events: none;
+    padding: 10px;
+    border: gainsboro solid 1px;
+    border-radius: 35px;
+}
+
+.b08_3d_pushback div:nth-child(1) {
+    color: #646464;
+    background-color: white;
+    -webkit-transform: rotateX(0deg) translateZ(0px);
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transition: all 0.2s ease;
+}
+
+.b08_3d_pushback div:nth-child(2) {
+    color: black;
+    background-color: orange;
+    -webkit-transform: rotateX(-179.5deg) translateZ(1px);
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transition: all 0.2s ease;
+}
+
+.b08_3d_pushback:hover div:nth-child(1) {
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -webkit-transform: rotateX(179.5deg);
+}
+
+.b08_3d_pushback:hover div:nth-child(2) {
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transform: rotateX(0deg) rotateY(0deg) translateZ(1px);
+    -webkit-transform: rotateX(0deg) rotateY(0deg) translateZ(1px);
+    -moz-transform: rotateX(0deg) rotateY(0deg) translateZ(1px);
+}
