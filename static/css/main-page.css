@@ -149,7 +149,7 @@ header {
     justify-items: center;
     overflow: hidden;
     height: 700px;
-    filter: grayscale(80%);
+
 }
 
 .main-movie-title {
@@ -370,6 +370,22 @@ footer {
     height: 500px;
     overflow: hidden;
 }
+.modal-heart{
+    width: 45px;
+    border-radius: 60px;
+}
+.modal-like{
+    width: 40px;
+    border-radius: 60px;
+}
+.modal-unlike{
+    width: 40px;
+    border-radius: 60px;
+}
+.modal-button{
+    border-radius: 60px;
+}
+
 
 .modal-img {
     width: 100%;

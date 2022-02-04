@@ -184,3 +184,23 @@ window.onclick = function (event){
         body.style.overflow = 'auto';
     }
 }
+
+// const a = document.querySelector('#heart-bnt');
+//
+// const BASE_COLOR = 'black';
+// const OTHER_COLOR = "red";
+//
+// function handClick(){
+//     const currentColor = a.style.color;
+//     if(currentColor === BASE_COLOR){
+//         a.style.color = OTHER_COLOR;
+//     }else{
+//         a.style.color = BASE_COLOR
+//     }
+// }
+//
+// function init(){
+//     a.style.color = BASE_COLOR;
+//     a.addEventListener("click",handClick);
+// }
+// init();
