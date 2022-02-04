@@ -191,3 +191,5 @@ migrations
 # Pipenv
 Pipfile
 Pipfile.lock
+
+config/
