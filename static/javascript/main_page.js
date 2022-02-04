@@ -160,9 +160,9 @@ var btns = document.getElementsByClassName("btn-open-popup");
 const body = document.querySelector('body')
 var funs = [];
 
-function Modal(num){
-    return function (){
-        btns[num].onclick = function (){
+function Modal(num) {
+    return function () {
+        btns[num].onclick = function () {
             modals[num].style.display = "block";
             body.style.overflow = 'hidden'
 
@@ -170,37 +170,20 @@ function Modal(num){
     };
 }
 
-for(var i = 0; i<btns.length; i++){
+for (var i = 0; i < btns.length; i++) {
     funs[i] = Modal(i);
 }
 
-for(var j = 0; j< btns.length; j++){
+for (var j = 0; j < btns.length; j++) {
     funs[j]();
 }
 
-window.onclick = function (event){
-    if (event.target.className === "modal"){
+window.onclick = function (event) {
+    if (event.target.className === "modal") {
         event.target.style.display = "none"
         body.style.overflow = 'auto';
     }
 }
 
-// const a = document.querySelector('#heart-bnt');
-//
-// const BASE_COLOR = 'black';
-// const OTHER_COLOR = "red";
-//
-// function handClick(){
-//     const currentColor = a.style.color;
-//     if(currentColor === BASE_COLOR){
-//         a.style.color = OTHER_COLOR;
-//     }else{
-//         a.style.color = BASE_COLOR
-//     }
-// }
-//
-// function init(){
-//     a.style.color = BASE_COLOR;
-//     a.addEventListener("click",handClick);
-// }
-// init();
+
+

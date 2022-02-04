@@ -384,8 +384,13 @@ footer {
 }
 .modal-button{
     border-radius: 60px;
+    border: 0;
+    outline: 0;
 }
-
+.active{
+    background-color: #2199e8;
+    color: #fff;
+}
 
 .modal-img {
     width: 100%;
