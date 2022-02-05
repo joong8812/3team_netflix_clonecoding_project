@@ -1,0 +1,611 @@
+/* CSS VARIABLES */
+:root {
+    --primary: #141414;
+    --light: #F3F3F3;
+    --dark: #686868;
+}
+
+/*img {*/
+/*    max-width: 100%;*/
+/*}*/
+
+h1 {
+    padding-top: 60px;
+}
+
+.wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+/* HEADER */
+header {
+    padding: 20px 20px 0 20px;
+    position: fixed;
+    top: 0;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas:
+   "nt mn mn sb . . . ";
+    background-color: var(--primary);
+    width: 100%;
+    margin-bottom: 0px;
+    z-index: 2;
+}
+
+.netflixLogo {
+    grid-area: nt;
+    object-fit: cover;
+    width: 100px;
+    max-height: 100%;
+
+    padding-left: 30px;
+    padding-top: 0px;
+}
+
+.netflixLogo img {
+    height: 35px;
+}
+
+#logo {
+    color: #E50914;
+    margin: 0;
+    padding: 0;
+}
+
+
+.main-nav {
+    grid-area: mn;
+    padding: 0 30px 0 20px;
+}
+
+.main-nav a {
+    color: var(--light);
+    text-decoration: none;
+    margin: 5px;
+}
+
+.main-nav a:hover {
+    color: var(--dark);
+}
+
+.sub-nav {
+    grid-area: sb;
+    padding: 0 40px 0 40px;
+}
+
+.sub-nav a {
+    color: var(--light);
+    text-decoration: none;
+    margin: 5px;
+}
+
+.sub-nav a:hover {
+    color: var(--dark);
+}
+
+
+/* MAIN CONTIANER */
+.main-container {
+    padding: 50px;
+}
+
+
+/* LINKS */
+.link {
+    padding: 50px;
+}
+
+.sub-links ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.sub-links a {
+    color: var(--dark);
+    text-decoration: none;
+}
+
+.sub-links a:hover {
+    color: var(--dark);
+    text-decoration: underline;
+}
+
+.logos a {
+    padding: 10px;
+}
+
+.logo {
+    color: var(--dark);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.main-movie {
+    margin-top: 59px;
+    text-align: center;
+}
+
+.main-movie img {
+    width: 100%;
+    height: 1200px;
+    left: 60px;
+
+}
+
+.main-movie-post {
+    position: relative;
+    display: flex;
+    /*justify-content: center;*/
+    justify-items: center;
+    overflow: hidden;
+    height: 700px;
+
+}
+
+.main-movie-title {
+    position: absolute;
+    left: 50px;
+    top: 250px;
+    font-size: 60px;
+    font-weight: 900;
+    color: black;
+}
+
+.main-movie-intro {
+    position: absolute;
+    left: 50px;
+    top: 400px;
+    width: 50%;
+    font-size: 20px;
+    font-weight: 999;
+
+}
+
+.slide-show {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    justify-items: center;
+    margin: 50px auto;
+    overflow: hidden;
+
+}
+
+.slides {
+    position: absolute;
+    display: flex;
+    justify-items: center;
+    left: 0;
+    top: 0;
+    width: 100vm; /* 슬라이드할 사진과 마진 총 넓이 */
+    height: 200px;
+    transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+
+}
+
+.slides li:hover {
+    transition: transform .3s;
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+/* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+.slides li:first-child {
+    margin-left: 10px;
+}
+
+/* 슬라이드들 옆으로 정렬 */
+.slides li:not(:last-child) {
+    float: left;
+    margin-right: 10px;
+}
+
+.slides li {
+    float: left;
+    list-style-type: none;
+    text-align: center;
+
+}
+
+.slides img {
+    max-width: 203px;
+    height: 112px;
+    margin-top: 28px;
+}
+
+.controller span {
+    position: absolute;
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    padding: 10px 20px;
+    top: 20%;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+/* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller span:hover {
+    background-color: rgba(128, 128, 128, 0.11);
+}
+
+.prev {
+    left: 0;
+}
+
+/* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev:hover {
+    transform: translateX(-10px);
+}
+
+.next {
+    right: 0;
+}
+
+/* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next:hover {
+    transform: translateX(10px);
+}
+
+
+/* FOOTER */
+footer {
+    padding: 20px;
+    text-align: center;
+    color: var(--dark);
+    margin: 10px;
+}
+
+
+.slides-1 {
+    position: absolute;
+    display: flex;
+    justify-items: center;
+    left: 0;
+    top: 0;
+    width: 100vm; /* 슬라이드할 사진과 마진 총 넓이 */
+    height: 200px;
+    transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+
+}
+
+.slides-1 li:hover {
+    transition: transform .3s;
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+
+}
+
+/* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+.slides-1 li:first-child {
+    margin-left: 10px;
+}
+
+/* 슬라이드들 옆으로 정렬 */
+.slides-1 li:not(:last-child) {
+    float: left;
+    margin-right: 10px;
+}
+
+.slides-1 li {
+    float: left;
+    list-style-type: none;
+
+}
+
+.slides-1 img {
+    width: 203px;
+    height: 112px;
+    margin-top: 28px;
+}
+
+.prev-1 {
+    left: 0;
+}
+
+/* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev-1:hover {
+    transform: translateX(-10px);
+}
+
+.next-1 {
+    right: 0;
+}
+
+/* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next-1:hover {
+    transform: translateX(10px);
+}
+
+.modal {
+    position: fixed;
+    justify-items: center;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal_body {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+
+    width: 80%;
+    height: 88%;
+    padding: 1px;
+
+
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+    overflow: auto;
+    transform: translateX(-50%) translateY(-50%);
+}
+.modal-movie-post{
+    height: 500px;
+    overflow: hidden;
+}
+.modal-heart{
+    width: 45px;
+    border-radius: 60px;
+}
+.modal-like{
+    width: 40px;
+    border-radius: 60px;
+}
+.modal-unlike{
+    width: 40px;
+    border-radius: 60px;
+}
+.modal-button{
+    border-radius: 60px;
+    border: 0;
+    outline: 0;
+}
+.active{
+    background-color: #2199e8;
+    color: #fff;
+}
+
+.modal-img {
+    width: 100%;
+    height: 900px;
+    margin-bottom: 30px;
+
+}
+.modal-movie-intro{
+    width: 60%;
+}
+.modal-movie-cast{
+    position: absolute;
+    width: 30%;
+    right: 0;
+    top: 60%;
+}
+
+.recommend-img{
+    width: 200px;
+    height: 200px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    /*margin-bottom: 40px;*/
+}
+.recommend-contents li {
+    float: left;
+    list-style-type: none;
+}
+.recommend-contents p {
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* 여기부터 */
+.slides-2 {
+    position: absolute;
+    display: flex;
+    justify-items: center;
+    left: 0;
+    top: 0;
+    width: 100vm; /* 슬라이드할 사진과 마진 총 넓이 */
+    height: 200px;
+    transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+
+}
+
+.slides-2 li:hover {
+    transition: transform .3s;
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+/* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+.slides-2 li:first-child {
+    margin-left: 10px;
+}
+
+/* 슬라이드들 옆으로 정렬 */
+.slides-2 li:not(:last-child) {
+    float: left;
+    margin-right: 10px;
+}
+
+.slides-2 li {
+    float: left;
+    list-style-type: none;
+
+}
+
+.slides-2 img {
+    max-width: 203px;
+    height: 112px;
+    margin-top: 28px;
+}
+
+.prev-2 {
+    left: 0;
+}
+
+/* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev-2:hover {
+    transform: translateX(-10px);
+}
+
+.next-2 {
+    right: 0;
+}
+
+/* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next-2:hover {
+    transform: translateX(10px);
+}
+
+
+.slides-3 {
+    position: absolute;
+    display: flex;
+    justify-items: center;
+    left: 0;
+    top: 0;
+    width: 100vm; /* 슬라이드할 사진과 마진 총 넓이 */
+    height: 200px;
+    transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+
+}
+
+.slides-3 li:hover {
+    transition: transform .3s;
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+/* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+.slides-3 li:first-child {
+    margin-left: 10px;
+}
+
+/* 슬라이드들 옆으로 정렬 */
+.slides-3 li:not(:last-child) {
+    float: left;
+    margin-right: 10px;
+}
+
+.slides-3 li {
+    float: left;
+    list-style-type: none;
+
+}
+
+.slides-3 img {
+    max-width: 203px;
+    height: 112px;
+    margin-top: 28px;
+}
+
+.prev-3 {
+    left: 0;
+}
+
+/* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev-3:hover {
+    transform: translateX(-10px);
+}
+
+.next-3 {
+    right: 0;
+}
+
+/* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next-3:hover {
+    transform: translateX(10px);
+}
+
+
+.slides-4 {
+    position: absolute;
+    display: flex;
+    justify-items: center;
+    left: 0;
+    top: 0;
+    width: 100vm; /* 슬라이드할 사진과 마진 총 넓이 */
+    height: 200px;
+    transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+
+}
+
+.slides-4 li:hover {
+    transition: transform .3s;
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+/* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+.slides-4 li:first-child {
+    margin-left: 10px;
+}
+
+/* 슬라이드들 옆으로 정렬 */
+.slides-4 li:not(:last-child) {
+    float: left;
+    margin-right: 10px;
+}
+
+.slides-4 li {
+    float: left;
+    list-style-type: none;
+
+}
+
+.slides-4 img {
+    max-width: 203px;
+    height: 112px;
+    margin-top: 28px;
+}
+
+.prev-4 {
+    left: 0;
+}
+
+/* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev-4:hover {
+    transform: translateX(-10px);
+}
+
+.next-4 {
+    right: 0;
+}
+
+/* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next-4:hover {
+    transform: translateX(10px);
+}
+
+
