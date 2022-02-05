@@ -1,5 +1,8 @@
-<!DOCTYPE html>
-<html>
+{% block title %}
+    메인페이지
+{% endblock %}
+{% block content %}
+{% load static %}
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/static/css/main-page.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main-page.css' %}">
 </head>
 <body>
 
@@ -61,7 +64,7 @@
                     <!-- 반복할 곳 -->
                     <li>
                         <a data-toggle="modal" class="btn-open-popup">
-                            <img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p1.PNG?raw=true"
+                            <img src="{% static 'images/movies/movise_{{  }}.jpg' %}"
                                  alt="">
                         </a>
                     </li>
@@ -369,6 +372,5 @@
         </footer>
     </section>
 </div>
-<script src="/static/javascript/main_page.js"></script>
-</body>
-</html>
+<script type="text/javascript" src="{% static 'javascript/main_page.js' %}"></script>
+{% endblock %}
