@@ -29,3 +29,15 @@ class QuoteModel(models.Model):
     actor = models.CharField(max_length=10, null=True)
     quote = models.CharField(max_length=500, null=True)
     moviemodel = models.ForeignKey(MovieModel, on_delete=models.CASCADE)
+
+
+class RatingModel(models.Model):
+    class Meta:
+        db_table = 'rating'
+
+    # code, userid, rating, timestamp, comment
+    movie_id = models.CharField(max_length=6)
+    username = models.CharField(max_length=150, null=True, blank=True)
+    rating = models.CharField(max_length=2)
+    timestamp = models.CharField(max_length=12)
+    comment = models.CharField(max_length=65535, null=True)
