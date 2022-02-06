@@ -1,6 +1,7 @@
 {% block title %}
     메인페이지
 {% endblock %}
+
 {% block content %}
 {% load static %}
 <head>
@@ -62,51 +63,19 @@
             <div class="slide-show">
                 <ul class="slides-1">
                     <!-- 반복할 곳 -->
+                    {% for i in genre_code %}
                     <li>
                         <a data-toggle="modal" class="btn-open-popup">
-                            <img src="{% static 'images/movies/movise_{{  }}.jpg' %}"
-                                 alt="">
+                            <img src="{% static 'images/movies/movise_{{ i }}.jpg' %}" alt="">
                         </a>
                     </li>
+                    {% endfor %}
                     <!--여기까지 반복-->
-                    <li><a data-toggle="modal" class="btn-open-popup"><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p2.PNG?raw=true"
-                            alt=""></a>
-                    </li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p3.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p4.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p5.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p6.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p7.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p8.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p9.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p10.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p11.PNG?raw=true"
-                            alt=""></a></li>
-                    <li><a href=""><img
-                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p12.PNG?raw=true"
-                            alt=""></a></li>
+
                 </ul>
                 <p class="controller">
-                    <span class="prev-1"><img src="/static/images/prev.png"/></span>
-                    <span class="next-1"><img src="/static/images/next.png"></span>
+                    <span class="prev-1"><img src="{% static 'images/prev.png' %}" alt=""/></span>
+                    <span class="next-1"><img src="{% static 'images/next.png' %}" alt=""></span>
                 </p>
                 <!-- Modal -->
                 <!-- 반복할 곳 -->
