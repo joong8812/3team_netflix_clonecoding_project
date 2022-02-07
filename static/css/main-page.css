@@ -219,7 +219,7 @@ header {
 }
 
 .slides img {
-    max-width: 203px;
+    width: 203px;
     height: 112px;
     margin-top: 28px;
 }
@@ -463,7 +463,7 @@ footer {
 }
 
 .slides-2 img {
-    max-width: 203px;
+    width: 203px;
     height: 112px;
     margin-top: 28px;
 }
@@ -524,7 +524,7 @@ footer {
 }
 
 .slides-3 img {
-    max-width: 203px;
+    width: 203px;
     height: 112px;
     margin-top: 28px;
 }
@@ -585,7 +585,7 @@ footer {
 }
 
 .slides-4 img {
-    max-width: 203px;
+    width: 203px;
     height: 112px;
     margin-top: 28px;
 }

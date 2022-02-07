@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 
 
+
+
 # Create your views here.
 def login_view(request):
     if request.method == 'POST':
