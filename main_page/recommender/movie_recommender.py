@@ -1,6 +1,6 @@
 import pandas as pd
 from main_page.models import MovieModel, RatingModel
-# from surprise import dump
+from surprise import dump
 from django.db.models import Q
 import random
 
