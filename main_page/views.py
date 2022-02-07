@@ -15,5 +15,5 @@ def recommend_movies(request):
 
         print(movie_list)
 
-        return render(request, 'main_page.html', {'genre_code': genre_code, 'movie_list':movie_list})
+        return render(request, 'main_page/main_page.html', {'genre_code': genre_code, 'movie_list':movie_list})
 
