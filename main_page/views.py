@@ -1,20 +1,18 @@
 from django.shortcuts import render
 from .models import MovieModel
-
+from .recommender.movie_recommender import MovieRecommender
 
 # Create your views here.
 def recommend_movies(request):
     if request.method == 'GET':
-        code = list(MovieModel.objects.filter(genre='코미디|액션').values('movie_id'))
-        cast = list(MovieModel.objects.filter(cast='황정민|한혜진').values('movie_id'))
+        mr = MovieRecommender()
+        code = mr.get_similar_movies_on_ibcf('161967', 12)
         genre_code = []
-        cast_code = []
-        for i in range(12):
-            genre_code.append(code[i]['movie_id'])
-            # cast_code.append(cast[i]['movie_id'])
 
-        print(cast)
+        for i in code:
+            genre_code.append(str(i))
 
-        # print(list(MovieModel.objects.all().values()))
+        print(genre_code)
+
         return render(request, 'main_page.html', {'genre_code': genre_code})
 
