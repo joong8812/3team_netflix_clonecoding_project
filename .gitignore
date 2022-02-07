@@ -193,3 +193,4 @@ Pipfile
 Pipfile.lock
 
 config/
+main_page/recommender/lfcf_recommender
