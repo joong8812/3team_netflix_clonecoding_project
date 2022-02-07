@@ -1,0 +1,99 @@
+h1 {
+    color: #744f06;
+    margin-bottom: 3vw;
+}
+
+body {
+    background-color: #F4B436;
+}
+
+#main {
+    width: 100%;
+}
+
+#header {
+    height: 90px;
+}
+
+#header #logo-wrapper {
+    margin: 20px;
+}
+
+#logo-wrapper > img {
+    height: 45px;
+    width: 167px;
+}
+
+#content {
+    width: 100%;
+}
+
+#content #login-box {
+    margin: 0 auto;
+    padding: 60px 70px;
+    width: 500px;
+    min-height: 660px;
+    background-color: rgba(229, 229, 199, 0.6);
+
+    display: flex;
+    flex-direction: column;
+}
+
+#login-box #login-wrapper #login-info #form-err-msg {
+    /* margin-bottom: 40px; */
+    height:30px;
+}
+
+#form-err-msg > b {
+    color: red
+}
+
+#login-box #login-wrapper #login-info .form-check-input:checked {
+    background-color: rgb(0, 92, 46);
+    border-color: rgb(0, 92, 46);
+}
+
+.btn {
+    width: 100%;
+}
+
+.btn-login {
+    color: #fff;
+    background-color: rgb(0, 63, 27);
+    border-color: rgb(0, 63, 27);
+}
+
+.btn-login:hover {
+    color: rgb(229, 229, 199);
+}
+
+.btn-naver {
+    color: #fff;
+    background-color: rgb(24, 206, 96);
+    border-color: rgb(24, 206, 96);
+}
+
+.btn-kakao {
+    color: #fff;
+    background-color: rgb(255, 230, 55);
+    border-color: rgb(255, 230, 55);
+}
+
+.btn-facebook {
+    color: #fff;
+    background-color: rgb(61, 91, 157);
+    border-color: rgb(61, 91, 157);
+}
+
+#notice-signup-wrapper>p>span {
+    color: #737373;
+}
+
+#notice-signup-wrapper>p>a {
+    color: #744f06;
+    text-decoration: none;
+}
+
+#notice-signup-wrapper:hover>p>a {
+    text-decoration: underline;
+}

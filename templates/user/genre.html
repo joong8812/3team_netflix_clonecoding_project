@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    장르 선택
+{% endblock %}
+{% block content %}
+{% load static %}
+    <link href="{% static 'css/genre.css' %}" rel="stylesheet" type="text/css">
+
+
+    <div class="genre">
+        <div class="genre_cards">
+            <div class="genre_card">
+                <img class="genre_img" src="{% static 'images/movies/movie_78726.jpg' %}" alt="">
+            </div>
+            <div class="genre_card">
+                <img class="genre_img" src="{% static 'images/movies/movie_101242.jpg' %}" alt="">
+            </div>
+            <div class="genre_card">
+                <img class="genre_img" src="{% static 'images/movies/movie_73344.jpg' %}" alt="">
+            </div>
+            <div class="genre_card">
+                <img class="genre_img" src="{% static 'images/movies/movie_113312.jpg' %}" alt="">
+            </div>
+            <div class="genre_card">
+                <img class="genre_img" src="{% static 'images/movies/movie_91031.jpg' %}" alt="">
+            </div>
+            <div class="genre_card">
+                <img class="genre_img" src="{% static 'images/movies/movie_129050.jpg' %}" alt="">
+            </div>
+            <div class="genre_card">
+                <img class="genre_img" src="{% static 'images/movies/movie_121922.jpg' %}" alt="">
+            </div>
+            <div class="genre_card">
+                <img class="genre_img" src="{% static 'images/movies/movie_57723.jpg' %}" alt="">
+            </div>
+        </div>
+        <div class="genre_control">
+            <button class="genre_btn back">이전</button>
+            <button class="genre_btn next">다음</button>
+        </div>
+        <form id="genre" action="/genre/" method="post">
+            {% csrf_token %}
+            <input id="genre_list" name="genre_list" type="text">
+            <button class="genre_btn">제출하기</button>
+        </form>
+    </div>
+
+    <script src="{% static 'js/genre.js' %}"></script>
+
+{% endblock %}

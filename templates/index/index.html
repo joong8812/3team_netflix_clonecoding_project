@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>설날에뭐보지</title>
-    <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="icon" href="../static/icon/favicon.ico" type="image/x-icon">
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+랜딩페이지
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block content %}
 
 
-</head>
-<body>
+{#    <link rel="stylesheet" href="../../static/css/index.css">#}
+
+{#    <link rel="icon" href="{% static 'icon/favicon.ico' %}">#}
+
+
     <div class="card1">
         <div class="head">
-            <img src="../static/img/logo.png" class="head-logo">
+            <img src="{% static 'img/logo.png' %}" class="head-logo">
             <a href="/login" class="btn">로그인</a>
         </div>
         <div class="card1-content">
@@ -40,7 +45,7 @@
     <!-- AI 추천 기능  -->
     <div class="card card2">
         <div class="card2-content">
-            <img class="card2-imgbox" src="../static/img/tv.png">
+            <img class="card2-imgbox" src="{% static 'img/tv.png' %}">
         </div>
         <div class="card2-text">
             <h1 class="card-text-title">AI가 추천해주는 영화</h1>
@@ -55,13 +60,13 @@
             <h2 class="card-text-subtitle">쉽고 빠르게 검색이 가능합니다.</h2>
         </div>
         <div class="card3-content">
-            <img class="card3-img" src="../static/img/card_content.png">
+            <img class="card3-img" src="{% static 'img/card_content.png' %}">
         </div>
     </div>
     <!-- SNS login -->
     <div class="card card4">
         <div class="card4-content">
-            <img class="card4-img" src="../static/img/sns.png">
+            <img class="card4-img" src="{% static 'img/sns.png' %}">
         </div>
         <div class="card4-text">
             <h1 class="card-text-title">소셜 로그인으로 간편하게 즐기세요 :)</h1>
@@ -74,7 +79,7 @@
         <ul class="team">
             <li class="team-item">
                 <div class="profile">
-                    <img src="../static/img/center.png">
+                    <img src="{% static 'img/center.png' %}">
                     <div class="profile-content">
                         <h2>최중재<span>로그인 페이지, AI</span></h2>
                         <p>뭉치면 살고, 흩어지면 죽는다. '붐~'</p>
@@ -83,7 +88,7 @@
             </li>
             <li class="team-item">
                 <div class="profile">
-                    <img src="../static/img/one.png">
+                    <img src="{% static 'img/one.png' %}">
                     <div class="profile-content">
                         <h2>정심일<span>메인페이지</span></h2>
                         <p>안녕하세요 정심일입니다</p>
@@ -92,7 +97,7 @@
             </li>
             <li class="team-item">
                 <div class="profile">
-                    <img src="../static/img/line.gif">
+                    <img src="{% static 'img/line.gif' %}">
                     <div class="profile-content">
                         <h2>선하진<span>회원가입페이지</span></h2>
                         <p>안녕하세요 선하진입니다</p>
@@ -101,7 +106,7 @@
             </li>
             <li class="team-item">
                 <div class="profile">
-                    <img src="../static/img/zero.png">
+                    <img src="{% static 'img/zero.png' %}">
                     <div class="profile-content">
                         <h2>박재영<span>랜딩페이지, 찜페이지</span></h2>
                         <p>즐거웠습니다 :)</p>
@@ -110,7 +115,7 @@
             </li>
             <li class="team-item">
                 <div class="profile">
-                    <img src="../static/img/me.jpg">
+                    <img src="{% static 'img/me.jpg' %}">
                     <div class="profile-content">
                         <h2>정미정<span>회원가입페이지, 상세페이지</span></h2>
                         <p>안녕하세요 정미정입니다</p>
@@ -140,5 +145,4 @@
         // }
     </script>
 
-</body>
-</html>
+{% endblock %}

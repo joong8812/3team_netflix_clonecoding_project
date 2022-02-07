@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'user',
     'storages',
     'login',
+    'index',
     'main_page',
     # Allauth를 위한 Apps 
     'django.contrib.sites',
