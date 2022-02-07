@@ -63,7 +63,7 @@
                 <div class="slide-show">
                     <ul class="slides-1">
                         <!-- 반복할 곳 -->
-                        {% for i in genre_code %}
+                        {% for i in similar_code %}
                             <li>
                                 <a data-toggle="modal" class="btn-open-popup">
                                     {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
@@ -160,7 +160,7 @@
             <h1 id="myList">Trending Now</h1>
             <div class="slide-show">
                 <ul class="slides-2">
-                    {% for i in genre_code %}
+                    {% for i in similar_recommend_code %}
                         <li>
                             <a data-toggle="modal" class="btn-open-popup">
                                 {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
@@ -252,7 +252,7 @@
             <h1 id="tvShows">TV Shows</h1>
             <div class="slide-show">
                 <ul class="slides-3">
-                     {% for i in genre_code %}
+                     {% for i in similar_genre_code %}
                         <li>
                             <a data-toggle="modal" class="btn-open-popup">
                                 {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
