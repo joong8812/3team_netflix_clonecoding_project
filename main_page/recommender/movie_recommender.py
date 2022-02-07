@@ -1,7 +1,8 @@
 import pandas as pd
 from main_page.models import MovieModel, RatingModel
 from surprise import dump
-from django.db.models import Q
+from django.db.models import Q, DateField
+from django.db.models.functions import Cast
 import random
 
 class MovieRecommender:
@@ -37,3 +38,44 @@ class MovieRecommender:
             preds.append((pred.est, pred.iid)) # 각 영화 평점 예측, 영화아이디 리스트에 넣기
         preds.sort(reverse=True) # 평점 내림차순으로 정렬
         return preds[:amounts]
+
+
+    # 선호하는 영화 장르와 같은 영화 리스트(random)
+    def get_movies_on_same_genre(self, movie_id, amounts=10):
+        genre = MovieModel.objects.get(movie_id=movie_id).genre # 영화 장르 찾기
+        movie_list = MovieModel.objects.filter(genre=genre)
+        random_list = []
+        for _ in range(amounts):
+            random_list.append(movie_list[random.randrange(0, len(movie_list))].movie_id)
+        return random_list
+
+
+    # 선호하는 영화의 감독이 만든 영화 리스트
+    def get_movies_on_same_director(self, movie_id):
+        director = MovieModel.objects.get(movie_id=movie_id).director # 영화 감독 찾기
+        movie_list = list(MovieModel.objects.filter(director=director).values_list('movie_id', flat=True))
+        return movie_list
+
+
+    # 선호하는 영화의 출연한 배우가 출연한 다른 작품 리스트
+    def get_movies_on_same_actors(self, movie_id):
+        actors = MovieModel.objects.get(movie_id=movie_id).cast.split('|') # 영화 배우 찾기
+        movie_dict = {}
+        for actor in actors:
+            movie_list = list(MovieModel.objects.filter(cast__contains=actor).values_list('movie_id', flat=True))
+            movie_dict[actor] = movie_list
+        return movie_dict
+
+
+    # 조건에 따른 월 기간별 개봉 영화 리스트(random)
+    def get_movies_on_release(self, start_month=1, end_month=1, amounts=10):
+        random_list = []
+        movie_list = MovieModel.objects.all().annotate(
+            release_date=Cast('release', output_field=DateField()),
+        ).filter(
+            release_date__month__gte=start_month,
+            release_date__month__lte=end_month
+        )
+        for _ in range(amounts):
+            random_list.append(movie_list[random.randrange(0, len(movie_list))].movie_id)
+        return random_list
