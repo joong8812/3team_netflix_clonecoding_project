@@ -8,11 +8,12 @@ def recommend_movies(request):
         mr = MovieRecommender()
         code = mr.get_similar_movies_on_ibcf('161967', 12)
         genre_code = []
+        movie_list = MovieRecommender().get_similar_movies_on_lfcf('161967')
 
         for i in code:
             genre_code.append(str(i))
 
-        print(genre_code)
+        print(movie_list)
 
-        return render(request, 'main_page.html', {'genre_code': genre_code})
+        return render(request, 'main_page.html', {'genre_code': genre_code, 'movie_list':movie_list})
 
