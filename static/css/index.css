@@ -1,0 +1,304 @@
+/* reset */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-size: large;
+}
+
+li {
+    list-style-type: none;
+}
+
+
+/* layout */
+
+html {
+    font-size: 16px;
+}
+
+
+body {
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: black;
+}
+
+
+.card1 {
+    height: 100vh;
+    background: url('/static/img/b1.png') center center / cover no-repeat;
+    border-bottom: 8px solid #222;
+}
+
+.card1 .head {
+    position: relative;
+    z-index: 10;
+    padding-top: 2rem;
+    padding-bottom: 100px;
+    margin: 0 3.5rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+.head-logo {
+    width: 20vw;
+    height: auto; 
+    margin-right: auto;
+}
+
+.card1 .btn {
+    border-radius: 3px;
+    padding: 10px 21px;
+    background-color: #F4B436;
+    color: white;
+}
+
+.card1-content {
+    font-weight: 400;
+    font-size: 1.625rem;
+    padding: 50px;
+    z-index: 1;
+    text-align: center;
+    position: relative;
+}
+.card1-content-title {
+    font-size: 4rem;
+    margin: 50px;
+}
+
+.card1-content p {
+    margin-top: 15px;
+}
+
+.card1-content-subtitle {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 50px;
+}
+
+.card1-form {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.card1-form .email {
+    display: flex;
+    flex-direction: column;
+}
+
+.card1-form .email-text {
+    font-size: 20px;
+    width: 500px;
+    height: 40px;
+    background-color: white;
+    color: #222;
+    text-align: left;
+}
+
+
+
+
+#form-email {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 0;
+}
+
+.card1-form .submit-btn {
+    font-size: 20px;
+    width: 150px;
+    height: 65.5px;
+}
+
+
+
+.card {
+    border-bottom: 8px solid #222;
+    height: 100%;
+    padding: 60px 0;
+}
+
+.card-text-title {
+    font-size: 3rem;
+}
+
+.card-text-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+
+.card2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.card2-content {
+    margin-top: 50px;
+    display: flex;
+}
+
+.card2-text {
+    padding: 80px;
+
+}
+
+
+.card2-imgbox {
+    width: 500px;
+    height: 400px;
+}
+
+.card2-slide {
+    position: absolute;
+    top: 8.3%;
+    right: 1.5%;
+    width: 458px;
+    height: 280px;
+}
+
+
+
+.card3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.card3-text {
+    width: 500px;
+}
+
+.card3-text {
+    width: 500px;
+}
+
+.card3-img {
+    width: 400px;
+}
+
+
+.card4 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.card4-text {
+    width: 500px;
+}
+
+
+.card4-img {
+    width: 400px;
+    margin-right: 80px; 
+}
+
+.card5 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card5-title {
+    font-size: 50px;
+    padding-bottom: 100px;
+}
+
+
+.team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.team-item {
+    flex-basis: 300px;
+    flex-shrink: 0;
+    transition: all .4s;
+    margin: 0 10px;
+}
+
+.team-item:hover {
+    flex-basis: 400px;
+    margin: 0 30px;
+}
+
+.team-item:hover .profile-content p {
+    max-height: 100px;
+    opacity: 1;
+}
+
+.team-item img {
+    width: 100%;
+    
+}
+
+.profile {
+    position: relative;
+    overflow: hidden;
+}
+
+.profile:before {
+    content : ' ';
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.95+100 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.95) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.95) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#f2000000',GradientType=0 ); /* IE6-9 */
+
+    position:absolute;
+    left:0;
+    right:0;
+    bottom: 0;
+    height:100px;
+}
+
+.profile-content {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 15px
+    
+}
+
+.profile-content h2 {
+    font-size: 30px;
+}
+
+.profile-content h2 span {
+    display: block;
+    font-size: 15px;
+}
+
+.profile-content p {
+    max-height: 0;
+    overflow: hidden;
+    font-size: 13px;
+    min-width: 150px;
+    transition: all .4s;
+    transition-delay: .4s;
+    margin-top: 0.5em;
+}
