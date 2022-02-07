@@ -18,6 +18,8 @@ class UserModel(AbstractUser):
         max_length=255,
         unique=True,
     )
+    genre_list = models.CharField(max_length=256, default='')
+
     bio = models.CharField(max_length=256, default='')
     follow = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followee')
 
