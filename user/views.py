@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import UserModel
 from django.http import HttpResponse
-from django.contrib.auth import get_user_model #사용자가 데이터베이스 안에 있는지 검사하는 함수
+from django.contrib.auth import get_user_model  # 사용자가 데이터베이스 안에 있는지 검사하는 함수
 import json
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def sign_up_view(request):
@@ -39,7 +40,7 @@ def genre(request):
         g_last = json.dumps(g)
 
         me = request.user
-        me.genre_list= g_last
+        me.genre_list = g_last
         me.save()
         return redirect('/main_page')
 
