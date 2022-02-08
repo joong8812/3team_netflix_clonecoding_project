@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
-from .models import MovieModel, ClipModel
+from .models import MovieModel, ClipModel, QuoteModel
+from django.views.decorators.csrf import csrf_exempt
 from user.views import UserModel
 from .recommender.movie_recommender import MovieRecommender
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
+from .stt import naverCSRRequest
+from django.http import JsonResponse
+import re
 import json
+from difflib import SequenceMatcher
 
 import requests
 from bs4 import BeautifulSoup
@@ -123,6 +128,89 @@ def get_main_movie_clip():
         video_url = clip['video_url']
 
     return {'movie_id': clip['movie_id'], 'url': video_url, 'title': movie['title'], 'plot': f"{movie['plot'][:190]} ..."}
+
+# 음성 인식
+# GET
+def result(request):
+    if request.method == 'GET':
+        receive_data = request.GET['q']
+        data = json.loads("{" + receive_data + "}")
+        print(data)
+        return render(request, 'main_page/result.html', {'data' :data})
+
+
+# POST
+@csrf_exempt
+def search(request):
+    # # print(request.POST)
+    # # data1 = request.FILES.files
+    # # print(data1)
+    # #
+    # #
+    # # # for i in data1:
+    # # #     print(i)
+    # #
+    # # # data2 = request.get('files')
+    # # # print(data2)
+
+    if request.method == 'POST':
+
+        data = request.body
+        print('data', data)
+        result = naverCSRRequest(data)
+        print(result)
+        search_result = search1(result['text'])
+        print(search_result)
+
+        return JsonResponse(search_result)
+        #return render(request, 'sparta/result.html', context=search_result) # render 왜안되는거야ㅑㅡㅡ 빡치네 우씨
+
+
+
+# 방법 1
+def search1(receive_text):
+    quote_dict = movie_id_quotes()
+    result_dict = {}
+
+    for moive_id, movie_quotes in quote_dict.items():
+        for quote in movie_quotes:
+            if SequenceMatcher(None, quote, receive_text).ratio() > 0.7:
+                print(quote)
+                print(moive_id)
+                movie = MovieModel.objects.filter(movie_id=moive_id)
+                print(movie.values()[0]['title'])
+                result_dict[moive_id] = movie.values()[0]['title']
+                break
+
+    return result_dict
+
+
+def string_filter(text):
+    pass
+    # filtered_string = re.sub('[-=+,#/\?:^.@*\"※~ㆍ!』'|\(\)\[\]`\'…》\"\"\'·]', '', text)
+    # result_string = filtered_string.replace(' ', '')
+    #
+    # return result_string
+
+
+def movie_id_quotes():
+    quote_dict = {}
+    quotes = QuoteModel.objects.all()
+
+    tmp_list = []
+    before_movie_id = 39470 # first movie id
+
+    for q in quotes:
+        if q.movie_id == str(before_movie_id):
+            tmp_list.append(q.quote)
+        else:
+            quote_dict[before_movie_id] = tmp_list
+            tmp_list = []
+            tmp_list.append(q.quote)
+
+        before_movie_id = q.movie_id
+
+    return quote_dict
 
 # 로그아웃
 @login_required
