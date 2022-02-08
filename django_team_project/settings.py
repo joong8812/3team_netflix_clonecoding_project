@@ -163,9 +163,9 @@ AUTHENTICATION_BACKENDS=[
 ]
 
 # 로그인 후 redirect route
-LOGIN_REDIRECT_URL = '/main_page'
+LOGIN_REDIRECT_URL = '/genre'
 # 로그아웃 후 redirect route
-ACCOUNT_LOGOUT_REDIRECT_URL = '/login'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 # Get으로도 logout 요청
 ACCOUNT_LOGOUT_ON_GET = True
 
