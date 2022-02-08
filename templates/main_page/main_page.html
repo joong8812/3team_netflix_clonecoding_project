@@ -38,8 +38,8 @@
                     <a target="_blank" href="https://codepen.io/cb2307/full/NzaOrm">Portfolio</a>
                 </nav>
                 <nav class="sub-nav">
-                    <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
-                    <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
+                    <a onclick="record()"><i class="fas fa-search sub-nav-logo"></i></a>
+                    <a onclick="stop()"><i class="fas fa-bell sub-nav-logo"></i></a>
                     <a href="#">Account</a>
                     <a href="{% url 'logout' %}">Logout</a>
                 </nav>
@@ -527,6 +527,108 @@
                     {% endfor %}
                 </div>
 
+                <script>
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = cookies[i].trim();
+                                // Does this cookie string begin with the name we want?
+                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    var csrftoken = getCookie('csrftoken');
+
+                    function csrfSafeMethod(method) {
+                        // these HTTP methods do not require CSRF protection
+                        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                    }
+
+                    $.ajaxSetup({
+                        beforeSend: function (xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        }
+                    });
+
+                    navigator.mediaDevices.getUserMedia({audio: true})
+                        .then(stream => {
+                            handlerFunction(stream)
+                        })
+
+                    function handlerFunction(stream) {
+                        rec = new MediaRecorder(stream);
+                        rec.ondataavailable = e => {
+                            console.log("ok");
+                            audioChunks.push(e.data);
+                        }
+                        rec.onstop = e => {
+                            if (rec.state == "inactive") {
+                                let blob = new Blob(audioChunks, {type: 'audio/wav'});
+                                const file = new File([blob], 'voice.wav', blob);
+
+                                // console.log(file); // 녹음된 파일
+
+                                // form 전송 방법
+                                /* let form = document.getElementById('form');
+                                formData = new FormData(form);
+                                formData.append('files', file);
+                                 console.log(formData);
+
+                                //form value 확인 ok
+                                for (var value of formData.values()) {
+                                    console.log(value);
+                                }
+                                // formdata key 확인
+                                for (var key of formData.keys()) {
+                                    console.log(key);
+                                }
+
+                                form.submit();*/
+
+                                //ajax 전송 방법 - 비동기
+                                $.ajax({
+                                    type: 'POST',
+                                    url: './search',
+                                    data: file,
+                                    processData: false,
+                                    contentType: 'application/my-binary-type',
+                                    success: function (response) {
+                                        console.log(response)
+                                        var result = JSON.stringify(response);
+                                        result = result.slice(1, -1)
+                                        window.location.href = "./result?q=" + result
+
+                                    }
+                                });
+
+
+                            }
+
+
+                        }
+                    }
+
+
+                    function record() {
+                        console.log("start");
+                        audioChunks = [];
+                        rec.start();
+                    }
+
+                    function stop() {
+                        console.log("stop");
+                        rec.stop();
+                    }
+                </script>
                 <!-- END OF MAIN CONTAINER -->
 
                 <!-- LINKS -->
