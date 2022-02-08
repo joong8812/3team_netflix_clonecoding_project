@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import MovieModel, ClipModel
-
+from user.views import UserModel
 from .recommender.movie_recommender import MovieRecommender
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
+import json
 
 import requests
 from bs4 import BeautifulSoup
@@ -14,11 +15,14 @@ import random
 def recommend_movies(request):
     if request.method == 'GET':
         mr = MovieRecommender()
+        user = request.user.genre_list
+        a = json.loads(user)
 
-        similar = mr.get_similar_movies_on_ibcf('161967', 12)
-        similar_recommend = MovieRecommender().get_similar_movies_on_lfcf('161967', 12)
-        similar_genre = MovieRecommender().get_movies_on_same_genre('93728', 12)
-        same_director = MovieRecommender().get_movies_on_same_director('93728')
+        print(type(a))
+        similar = mr.get_similar_movies_on_ibcf(a[0], 12)
+        similar_recommend = MovieRecommender().get_similar_movies_on_lfcf(a[1], 12)
+        similar_genre = MovieRecommender().get_movies_on_same_genre(a[0], 12)
+        same_director = MovieRecommender().get_movies_on_same_director(a[1])
         on_release = MovieRecommender().get_movies_on_release(end_month=2, amounts=12)
         similar_recommend_code = []
         similar_recommend_code_2 = []
@@ -26,6 +30,8 @@ def recommend_movies(request):
         similar_genre_code = []
         same_director_list = []
         on_release_list = []
+        print(similar_genre)
+
         for i in similar:
             movie_info = {}
             movie = MovieModel.objects.get(movie_id=i)
