@@ -35,7 +35,6 @@ def recommend_movies(request):
         similar_genre_code = []
         same_director_list = []
         on_release_list = []
-        print(similar_genre)
 
         for i in similar:
             movie_info = {}
@@ -47,6 +46,7 @@ def recommend_movies(request):
             movie_info['director'] = movie.director
             movie_info['cast'] = movie.cast
             movie_info['plot'] = movie.plot
+            movie_info['clip_url'] = get_movie_clip(movie.movie_id)
             movie_list.append(movie_info)
 
         for g in similar_genre:
@@ -59,6 +59,7 @@ def recommend_movies(request):
             movie_ginfo['director'] = movie.director
             movie_ginfo['cast'] = movie.cast
             movie_ginfo['plot'] = movie.plot
+            movie_ginfo['clip_url'] = get_movie_clip(movie.movie_id)
             similar_genre_code.append(movie_ginfo)
 
         for i in range(12):
@@ -73,6 +74,7 @@ def recommend_movies(request):
             similar_recommend_dict['director'] = movie.director
             similar_recommend_dict['cast'] = movie.cast
             similar_recommend_dict['plot'] = movie.plot
+            similar_recommend_dict['clip_url'] = get_movie_clip(movie.movie_id)
             similar_recommend_code_2.append(similar_recommend_dict)
 
         for p in same_director:
@@ -85,6 +87,7 @@ def recommend_movies(request):
             same_director_dict['director'] = movie.director
             same_director_dict['cast'] = movie.cast
             same_director_dict['plot'] = movie.plot
+            same_director_dict['clip_url'] = get_movie_clip(movie.movie_id)
             same_director_list.append(same_director_dict)
 
         for v in on_release:
@@ -97,6 +100,7 @@ def recommend_movies(request):
             on_release_dict['director'] = movie.director
             on_release_dict['cast'] = movie.cast
             on_release_dict['plot'] = movie.plot
+            on_release_dict['clip_url'] = get_movie_clip(movie.movie_id)
             on_release_list.append(on_release_dict)
 
 
@@ -106,7 +110,7 @@ def recommend_movies(request):
                                                             'same_director_list':same_director_list, 'on_release_list':on_release_list})
 
 
-# 영화 클립 url을 돌려준다
+# '네이버 TV'에 없는 경우 영화 클립 url을 돌려준다
 def get_movie_clip_url(movie_code, multimedia_id):
     url = f"https://movie.naver.com/movie/bi/mi/mediaView.naver?code={movie_code}&mid={multimedia_id}"
     result = requests.get(url)
@@ -123,11 +127,24 @@ def get_main_movie_clip():
     clip = ClipModel.objects.filter(movie_id=draw_movie_id).values()[0]
     movie = MovieModel.objects.filter(movie_id=draw_movie_id).values()[0]
     if clip['video_url'] == 'None':
-        video_url = get_movie_clip_url(clip['movie_id'], clip['multimedia_id'].replace('.', ''))
+        video_url = get_movie_clip_url(clip['movie_id'], clip['multimedia_id'].split('.')[0])
     else:
         video_url = clip['video_url']
 
     return {'movie_id': clip['movie_id'], 'url': video_url, 'title': movie['title'], 'plot': f"{movie['plot'][:190]} ..."}
+
+
+
+# 영화 클립 url 돌려준다
+def get_movie_clip(movie_id):
+    clip = ClipModel.objects.filter(movie_id=movie_id).values()[0]
+    movie = MovieModel.objects.filter(movie_id=movie_id).values()[0]
+    if clip['video_url'] == 'None':
+        video_url = get_movie_clip_url(clip['movie_id'], clip['multimedia_id'].split('.')[0])
+    else:
+        video_url = clip['video_url']
+
+    return video_url
 
 # 음성 인식
 # GET
@@ -211,6 +228,7 @@ def movie_id_quotes():
         before_movie_id = q.movie_id
 
     return quote_dict
+
 
 # 로그아웃
 @login_required

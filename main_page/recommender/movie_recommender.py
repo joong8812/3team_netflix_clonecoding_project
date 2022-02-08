@@ -42,11 +42,16 @@ class MovieRecommender:
 
     # 선호하는 영화 장르와 같은 영화 리스트(random)
     def get_movies_on_same_genre(self, movie_id, amounts=10):
-        genre = MovieModel.objects.get(movie_id=movie_id).genre # 영화 장르 찾기
-        movie_list = MovieModel.objects.filter(genre=genre)
+        movie_list = []
+        genres = MovieModel.objects.get(movie_id=movie_id).genre.split('|') # 영화 장르 찾기
+        for genre in genres:
+            movie_list.append(MovieModel.objects.filter(genre=genre).values())
         random_list = []
-        for _ in range(amounts):
-            random_list.append(movie_list[random.randrange(0, len(movie_list))].movie_id)
+        while len(random_list) <= amounts:
+            genre_count = len(movie_list)
+            random_index = random.randrange(genre_count)
+            random_list.append(movie_list[random_index][random.randrange(0, len(movie_list[random_index]))]['movie_id'])
+            random_list = list(set(random_list)) # 중복 제거
         return random_list
 
 

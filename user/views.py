@@ -45,4 +45,7 @@ def genre(request):
         return redirect('/main_page')
 
     elif request.method == 'GET':
-        return render(request, 'user/genre.html')
+        if len(request.user.genre_list) > 0:
+            return redirect('main_page')
+        else:
+            return render(request, 'user/genre.html')
