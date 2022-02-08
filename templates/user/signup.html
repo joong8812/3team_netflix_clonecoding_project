@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     회원가입
 {% endblock %}
 {% block content %}
-{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/sign_up.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <div class="form-container">
@@ -12,9 +12,8 @@
             <img src="{% static 'images/searologo.png' %}" alt="LOGO" style="width: 40%; height: auto; margin-left: 30%">
         </div>
 
-        <form class="form-area" method="post" action="/sign-up/">
+        <form class="form-area" method="post" onsubmit="return rebye();" action="/sign-up/">
             {% csrf_token %}
-
             <div class="form-grp">
                 <input type="email" name="email" placeholder="user@email.com" id="email">
                 <i class="fa fa-times e_times"></i>
@@ -34,6 +33,12 @@
                 <small id="name_error">Error Message</small>
             </div>
 
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+
             <div class="b_button">
                 <div class="back">
                     <div class="button_base b08_3d_pushback">
@@ -42,11 +47,11 @@
                     </div>
                 </div>
                 <div class="back">
-                    <button class="button_base b08_3d_pushback">
+                    <button type="submit" class="button_base b08_3d_pushback">
                         <div>확인</div>
                         <div>하시겠어요?</div>
                     </button>
-                    <div class="button_base b08_3d_pushback">
+                                        <div class="button_base b08_3d_pushback">
                         <div>취소</div>
                         <div>하시겠어요?</div>
                     </div>
@@ -54,5 +59,5 @@
             </div>
         </form>
     </div>
-    <script type="text/javascript" src="{% static 'js/sign_up.js' %}"></script>
+<script src="{% static 'js/sign_up.js' %}"></script>
 {% endblock %}

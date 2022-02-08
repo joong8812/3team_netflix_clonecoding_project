@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+
 from . import views
 from .views import CustomSignupView
 
@@ -25,5 +26,6 @@ urlpatterns = [
     re_path(r'^accounts/social/signup/$', CustomSignupView.as_view(), name='socialaccount_signup'), # 소셜로그인 시, 다른 플래폼에 이미 해당 이메일로 회원가입 되어있는 경우 타는 url
     path('accounts/',include('allauth.urls')),  # allauth 관련 페이지 route
     path('', include('user.urls')),
+    path('main_page/', include('main_page.urls'))
 
 ]
