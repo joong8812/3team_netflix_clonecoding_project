@@ -31,7 +31,7 @@ password.addEventListener('keyup', function (){ //키를 놓을 때 발생하는
     var p_check = document.querySelector('.p_check');
 
     var pwd_error = document.querySelector('#pwd_error')
-    if (password.value.length == 0 || password.value.length < 5){
+    if (password.value.length < 5){
         password.style.border = '2px solid red';
         p_times.style.display = 'block';
         p_check.style.display = 'none';
@@ -44,6 +44,7 @@ password.addEventListener('keyup', function (){ //키를 놓을 때 발생하는
         p_check.style.display = 'block';
         pwd_error.style.visibility ='hidden';
     }
+
 })
 
 var profile_name = document.querySelector("#profile-name");
@@ -52,7 +53,7 @@ profile_name.addEventListener('keyup', function (){ //키를 놓을 때 발생�
     var name_check = document.querySelector('.name_check');
     var name_error = document.querySelector('#name_error');
 
-    if (profile_name.value.length == 0 || profile_name.value.length < 3){
+    if (profile_name.value.length < 3){
         profile_name.style.border = '2px solid red';
         name_times.style.display = 'block';
         name_check.style.display = 'none';
