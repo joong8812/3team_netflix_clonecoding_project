@@ -158,7 +158,7 @@ header {
     top: 250px;
     font-size: 60px;
     font-weight: 900;
-    color: rgb(245, 240, 165);
+    color: black;
 }
 
 .main-movie-intro {
@@ -168,17 +168,16 @@ header {
     width: 50%;
     font-size: 20px;
     font-weight: 999;
-    color: white;
 
 }
 
 .slide-show {
     width: 100%;
-    height: 200px;
+    height: 190px;
     position: relative;
     justify-items: center;
-    margin: 50px auto;
-    overflow: hidden;
+    margin: 50px 0 0 50px;
+
 
 }
 
@@ -188,8 +187,8 @@ header {
     justify-items: center;
     left: 0;
     top: 0;
-    width: 100vm; /* 슬라이드할 사진과 마진 총 넓이 */
-    height: 200px;
+    width: 100vm; /* 슬라이드할 사진과 마진 총 넓이 =이거 안먹힘*/
+    height: 230px;
     transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
 
 }
@@ -203,7 +202,7 @@ header {
 
 /* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
 .slides li:first-child {
-    margin-left: 10px;
+    margin-left: 55px;
 }
 
 /* 슬라이드들 옆으로 정렬 */
@@ -220,9 +219,9 @@ header {
 }
 
 .slides img {
-    width: 203px;
-    height: 112px;
-    margin-top: 28px;
+    width: 300px;
+    height: 150px;
+    margin-top: 25px;
 }
 
 .controller span {
@@ -317,19 +316,6 @@ footer {
     left: 0;
 }
 
-/* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
-.prev-1:hover {
-    transform: translateX(-10px);
-}
-
-.next-1 {
-    right: 0;
-}
-
-/* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
-.next-1:hover {
-    transform: translateX(10px);
-}
 
 .modal {
     position: fixed;
@@ -400,14 +386,13 @@ footer {
 
 }
 .modal-movie-intro{
-    margin-top: 30px;
     width: 60%;
 }
 .modal-movie-cast{
     position: absolute;
     width: 30%;
     right: 0;
-    top: 90%;
+    top: 60%;
 }
 
 .recommend-img{
@@ -423,7 +408,7 @@ footer {
     list-style-type: none;
 }
 .recommend-contents p {
-    margin-top: 50px;
+    margin-top: 10px;
     text-align: center;
 }
 

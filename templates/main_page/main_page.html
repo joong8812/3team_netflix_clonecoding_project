@@ -18,544 +18,463 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main-page.css' %}">
     {#    </head>#}
     {#<body>#}
-<form class="form-area" method="GET" action="/main_page/">
-    {% csrf_token %}
-    <div class="wrapper">
+    <form class="form-area" method="GET" action="/main_page/">
+        {% csrf_token %}
+        <div class="wrapper">
 
-        <!-- HEADER -->
-        <header>
-            <div class="netflixLogo">
-                <a id="logo" href="#home"><img
-                        src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true"
-                        alt="Logo Image"></a>
-            </div>
-            <nav class="main-nav">
-                <a href="#home">Home</a>
-                <a href="#tvShows">TV Shows</a>
-                <a href="#movies">Movies</a>
-                <a href="#originals">Originals</a>
-                <a href="#">Recently Added</a>
-                <a target="_blank" href="https://codepen.io/cb2307/full/NzaOrm">Portfolio</a>
-            </nav>
-            <nav class="sub-nav">
-                <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
-                <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
-                <a href="#">Account</a>
-            </nav>
-        </header>
-        <!-- END OF HEADER -->
-        <section class="main-movie">
-            <div class="main-movie-post">
-                <iframe id='clip' src='{{main_movie_clip.url}}' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='2000' HEIGHT='700' allow='autoplay' allowfullscreen></iframe>
-                <span class="main-movie-title">{{main_movie_clip.title}}</span>
-                <span class="main-movie-intro">{{main_movie_clip.plot}}</span>
-           </span>
-            </div>
-        </section>
-        <!-- MAIN CONTAINER -->
-        <section class="main-container">
-            <div class="location" id="home">
-                <h1 id="Popular on Netflix">Popular on Netflix</h1>
-                <div class="slide-show">
-                    <ul class="slides-1">
+            <!-- HEADER -->
+            <header>
+                <div class="netflixLogo">
+                    <a id="logo" href="#home"><img
+                            src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true"
+                            alt="Logo Image"></a>
+                </div>
+                <nav class="main-nav">
+                    <a href="#home">Home</a>
+                    <a href="#tvShows">TV Shows</a>
+                    <a href="#movies">Movies</a>
+                    <a href="#originals">Originals</a>
+                    <a href="#">Recently Added</a>
+                    <a target="_blank" href="https://codepen.io/cb2307/full/NzaOrm">Portfolio</a>
+                </nav>
+                <nav class="sub-nav">
+                    <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+                    <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
+                    <a href="#">Account</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </nav>
+            </header>
+            <!-- END OF HEADER -->
+            <section class="main-movie">
+                <div class="main-movie-post">
+                    <iframe id='clip' src='{{ main_movie_clip.url }}' frameborder='no' scrolling='no' marginwidth='0'
+                            marginheight='0' WIDTH='2000' HEIGHT='700' allow='autoplay' allowfullscreen></iframe>
+                    <span class="main-movie-title">{{ main_movie_clip.title }}</span>
+                    <span class="main-movie-intro">{{ main_movie_clip.plot }}</span>
+                    </span>
+                </div>
+            </section>
+            <!-- MAIN CONTAINER -->
+            <section class="main-container">
+                <div class="location" id="home">
+                    <h1 id="Popular on Netflix">Popular on Netflix</h1>
+                    <div class="slide-show">
+                        <ul class="slides-1">
+                            <!-- 반복할 곳 -->
+                            {% for i in movie_list %}
+                                <li>
+                                    <a data-toggle="modal" class="btn-open-popup">
+                                        {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                            <img src="{% static link %}">
+                                        {% endwith %}
+                                    </a>
+
+                                </li>
+                            {% endfor %}
+                            <!--여기까지 반복-->
+
+                        </ul>
+                        <p class="controller">
+                            <span class="prev-1"><img src="{% static 'images/prev.png' %}"/></span>
+                            <span class="next-1"><img src="{% static 'images/next.png' %}"></span>
+                        </p>
+                        <!-- Modal -->
                         <!-- 반복할 곳 -->
-                        {% for i in similar_code %}
-                            <li>
-                                <a data-toggle="modal" class="btn-open-popup">
-                                    {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
-                                       <img src="{% static link %}">
-                                    {% endwith %}
-                                </a>
+                        {% for i in movie_list %}
+                            <div class="modal">
+                                <div class="modal_body">
+                                    <div class="modal-movie-post">
+                                        {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                            <img class="modal-img" src="{% static link %}"/>
+                                        {% endwith %}
+                                    </div>
+                                    <span class="main-movie-title">{{ i.title }}</span>
+                                    <span class="main-movie-intro">
+                            <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
+                                                                                      src="{% static 'images/heart.png' %}"></button>
+                            <button type="button" class="modal-button like-bnt"><img class="modal-like"
+                                                                                     src="{% static 'images/like.png' %}"></button>
+                            <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
+                                                                                       src="{% static 'images/unlike.png' %}"></button>
+                        </span>
+                                    <div class="modal-movie-intro">
+                                        <strong>
+                                            {{ i.plot }}
+                                        </strong>
 
-                            </li>
+                                    </div>
+
+                                    <div class="modal-movie-cast">
+                                        <ul>
+                                            <li>
+                                                <strong>{{ i.cast }}</strong>
+                                            </li>
+                                            <li>
+                                                <strong>{{ i.genre }}</strong>
+                                            </li>
+                                            <li>
+                                                <strong>{{ i.maturity_rating }}</strong>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="recommend-contents">
+                                        <p><strong>비슷한 콘텐츠</strong></p>
+                                        <ul>
+                                            {% for i in movie_list %}
+                                                <li>
+                                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                                        <img class="recommend-img" src="{% static link %}">
+                                                    {% endwith %}
+                                                    <strong><p>{{ i.title }}</p></strong>
+
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
                         <!--여기까지 반복-->
+                    </div>
+                </div>
+
+                <h1 id="myList">Trending Now</h1>
+                <div class="slide-show">
+                    <ul class="slides-2">
+                        {% for i in similar_recommend_code %}
+                            <li>
+                                <a data-toggle="modal" class="btn-open-popup">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img src="{% static link %}">
+                                    {% endwith %}
+                                </a>
+                            </li>
+                        {% endfor %}
 
                     </ul>
                     <p class="controller">
-                        <span class="prev-1"><img src="{% static 'images/prev.png' %}"/></span>
-                        <span class="next-1"><img src="{% static 'images/next.png' %}"></span>
+                        <span class="prev-2"><img src="{% static 'images/prev.png' %}"/></span>
+                        <span class="next-2"><img src="{% static 'images/next.png' %}"></span>
                     </p>
-                    <!-- Modal -->
-                    <!-- 반복할 곳 -->
-                {% for i in genre_code %}
-                    <div class="modal">
-                        <div class="modal_body">
-                            <div class="modal-movie-post">
-                                <img class="modal-img" src="/static/images/movie_image.jpg"/>
-                            </div>
-                            <span class="main-movie-title">해적 도깨비깃발</span>
-                            <span class="main-movie-intro">
-                            <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
-                                                                                      src="/static/images/heart.png"></button>
-                            <button type="button" class="modal-button like-bnt"><img class="modal-like"
-                                                                                     src="/static/images/like.png"></button>
-                            <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
-                                                                                       src="/static/images/unlike.png"></button>
-                        </span>
-                            <div class="modal-movie-intro">
-                                <strong>
-                                    그러던 어느 날, 왜구선을 소탕하던 이들은 흔적도 없이 사라진 왕실의 보물이
-                                    어딘가 숨겨져 있다는 사실을 알게 되고 해적 인생에 다시없을 최대 규모의 보물을
-                                    찾아 위험천만한 모험에 나서기 시작한다. 하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니!
-                                    원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 보물을 차지하기
-                                    위해 바다에 뛰어드는데...! 해적과 의적, 그리고 역적 사라진 보물! 찾는 자가 주인이다!
-                                </strong>
-
-                            </div>
-                            <div class="modal-movie-cast">
-                                <ul>
-                                    <li>
-                                        <strong>출연진: 누구 누구 누구</strong>
-                                    </li>
-                                    <li>
-                                        <strong>장르 : 머머머멈머</strong>
-                                    </li>
-                                    <li>
-                                        <strong>등급 : 15세</strong>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="recommend-contents">
-                                <p><strong>비슷한 콘텐츠</strong></p>
-                                <ul>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <strong><p>해적: 도깨비 깃발</p></strong>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong> 엄청긴건 없겠지?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-                    <!--여기까지 반복-->
-                </div>
-            </div>
-
-            <h1 id="myList">Trending Now</h1>
-            <div class="slide-show">
-                <ul class="slides-2">
                     {% for i in similar_recommend_code %}
-                        <li>
-                            <a data-toggle="modal" class="btn-open-popup">
-                                {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
-                                    <img src="{% static link %}">
-                                {% endwith %}
-                            </a>
-                        </li>
-                    {% endfor %}
-
-                </ul>
-                <p class="controller">
-                    <span class="prev-2"><img src="{% static 'images/prev.png' %}"/></span>
-                    <span class="next-2"><img src="{% static 'images/next.png' %}"></span>
-                </p>
-             {% for i in genre_code %}
-                    <div class="modal">
-                        <div class="modal_body">
-                            <div class="modal-movie-post">
-                                <img class="modal-img" src="/static/images/movie_image.jpg"/>
-                            </div>
-                            <span class="main-movie-title">해적 도깨비깃발</span>
-                            <span class="main-movie-intro">
+                        <div class="modal">
+                            <div class="modal_body">
+                                <div class="modal-movie-post">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img class="modal-img" src="{% static link %}"/>
+                                    {% endwith %}
+                                </div>
+                                <span class="main-movie-title">{{ i.title }}</span>
+                                <span class="main-movie-intro">
                             <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
-                                                                                      src="/static/images/heart.png"></button>
+                                                                                      src="{% static 'images/heart.png' %}"></button>
                             <button type="button" class="modal-button like-bnt"><img class="modal-like"
-                                                                                     src="/static/images/like.png"></button>
+                                                                                     src="{% static 'images/like.png' %}"></button>
                             <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
-                                                                                       src="/static/images/unlike.png"></button>
+                                                                                       src="{% static 'images/unlike.png' %}"></button>
                         </span>
-                            <div class="modal-movie-intro">
-                                <strong>
-                                    그러던 어느 날, 왜구선을 소탕하던 이들은 흔적도 없이 사라진 왕실의 보물이
-                                    어딘가 숨겨져 있다는 사실을 알게 되고 해적 인생에 다시없을 최대 규모의 보물을
-                                    찾아 위험천만한 모험에 나서기 시작한다. 하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니!
-                                    원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 보물을 차지하기
-                                    위해 바다에 뛰어드는데...! 해적과 의적, 그리고 역적 사라진 보물! 찾는 자가 주인이다!
-                                </strong>
+                                <div class="modal-movie-intro">
+                                    <strong>
+                                        {{ i.plot }}
+                                    </strong>
 
-                            </div>
-                            <div class="modal-movie-cast">
-                                <ul>
-                                    <li>
-                                        <strong>출연진: 누구 누구 누구</strong>
-                                    </li>
-                                    <li>
-                                        <strong>장르 : 머머머멈머</strong>
-                                    </li>
-                                    <li>
-                                        <strong>등급 : 15세</strong>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="recommend-contents">
-                                <p><strong>비슷한 콘텐츠</strong></p>
-                                <ul>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <strong><p>해적: 도깨비 깃발</p></strong>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong> 엄청긴건 없겠지?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                </ul>
+                                </div>
+                                <div class="modal-movie-cast">
+                                    <ul>
+                                        <li>
+                                            <strong>출연진: {{ i.cast }}</strong>
+                                        </li>
+                                        <li>
+                                            <strong>장르 : {{ i.genre }}</strong>
+                                        </li>
+                                        <li>
+                                            <strong>등급 : {{ i.maturity_rating }}</strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="recommend-contents">
+                                    <p><strong>비슷한 콘텐츠</strong></p>
+                                    <ul>
+                                        {% for i in similar_recommend_code %}
+                                            <li>
+                                                {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                                    <img class="recommend-img" src="{% static link %}">
+                                                {% endwith %}
+                                                <strong><p>{{ i.title }}</p></strong>
 
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
                     <!--여기까지 반복-->
-            </div>
-
-            <h1 id="tvShows">TV Shows</h1>
-            <div class="slide-show">
-                <ul class="slides-3">
-                     {% for i in similar_genre_code %}
-                        <li>
-                            <a data-toggle="modal" class="btn-open-popup">
-                                {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
-                                    <img src="{% static link %}">
-                                {% endwith %}
-                            </a>
-                        </li>
-                    {% endfor %}
-
-
-                </ul>
-                <p class="controller">
-                    <span class="prev-3"><img src="{% static 'images/prev.png' %}"/></span>
-                    <span class="next-3"><img src="{% static 'images/next.png' %}"></span>
-                </p>
-             {% for i in genre_code %}
-                    <div class="modal">
-                        <div class="modal_body">
-                            <div class="modal-movie-post">
-                                <img class="modal-img" src="/static/images/movie_image.jpg"/>
-                            </div>
-                            <span class="main-movie-title">해적 도깨비깃발</span>
-                            <span class="main-movie-intro">
-                            <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
-                                                                                      src="/static/images/heart.png"></button>
-                            <button type="button" class="modal-button like-bnt"><img class="modal-like"
-                                                                                     src="/static/images/like.png"></button>
-                            <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
-                                                                                       src="/static/images/unlike.png"></button>
-                        </span>
-                            <div class="modal-movie-intro">
-                                <strong>
-                                    그러던 어느 날, 왜구선을 소탕하던 이들은 흔적도 없이 사라진 왕실의 보물이
-                                    어딘가 숨겨져 있다는 사실을 알게 되고 해적 인생에 다시없을 최대 규모의 보물을
-                                    찾아 위험천만한 모험에 나서기 시작한다. 하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니!
-                                    원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 보물을 차지하기
-                                    위해 바다에 뛰어드는데...! 해적과 의적, 그리고 역적 사라진 보물! 찾는 자가 주인이다!
-                                </strong>
-
-                            </div>
-                            <div class="modal-movie-cast">
-                                <ul>
-                                    <li>
-                                        <strong>출연진: 누구 누구 누구</strong>
-                                    </li>
-                                    <li>
-                                        <strong>장르 : 머머머멈머</strong>
-                                    </li>
-                                    <li>
-                                        <strong>등급 : 15세</strong>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="recommend-contents">
-                                <p><strong>비슷한 콘텐츠</strong></p>
-                                <ul>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <strong><p>해적: 도깨비 깃발</p></strong>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong> 엄청긴건 없겠지?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-
-            <h1 id="movies">Blockbuster Action & Adventure</h1>
-            <div class="slide-show">
-                <ul class="slides-4">
-                    {% for i in genre_code %}
-                        <li>
-                            <a data-toggle="modal" class="btn-open-popup">
-                                {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
-                                    <img src="{% static link %}">
-                                {% endwith %}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <p class="controller">
-                    <span class="prev-4"><img src="{% static 'images/prev.png' %}"/></span>
-                    <span class="next-4"><img src="{% static 'images/next.png' %}"></span>
-                </p>
-             {% for i in genre_code %}
-                    <div class="modal">
-                        <div class="modal_body">
-                            <div class="modal-movie-post">
-                                <img class="modal-img" src="/static/images/movie_image.jpg"/>
-                            </div>
-                            <span class="main-movie-title">해적 도깨비깃발</span>
-                            <span class="main-movie-intro">
-                            <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
-                                                                                      src="/static/images/heart.png"></button>
-                            <button type="button" class="modal-button like-bnt"><img class="modal-like"
-                                                                                     src="/static/images/like.png"></button>
-                            <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
-                                                                                       src="/static/images/unlike.png"></button>
-                        </span>
-                            <div class="modal-movie-intro">
-                                <strong>
-                                    그러던 어느 날, 왜구선을 소탕하던 이들은 흔적도 없이 사라진 왕실의 보물이
-                                    어딘가 숨겨져 있다는 사실을 알게 되고 해적 인생에 다시없을 최대 규모의 보물을
-                                    찾아 위험천만한 모험에 나서기 시작한다. 하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니!
-                                    원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 보물을 차지하기
-                                    위해 바다에 뛰어드는데...! 해적과 의적, 그리고 역적 사라진 보물! 찾는 자가 주인이다!
-                                </strong>
-
-                            </div>
-                            <div class="modal-movie-cast">
-                                <ul>
-                                    <li>
-                                        <strong>출연진: 누구 누구 누구</strong>
-                                    </li>
-                                    <li>
-                                        <strong>장르 : 머머머멈머</strong>
-                                    </li>
-                                    <li>
-                                        <strong>등급 : 15세</strong>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="recommend-contents">
-                                <p><strong>비슷한 콘텐츠</strong></p>
-                                <ul>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <strong><p>해적: 도깨비 깃발</p></strong>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong> 엄청긴건 없겠지?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-            <h1 id="originals">Netflix Originals</h1>
-            <div class="slide-show">
-                <ul class="slides">
-                    {% for i in genre_code %}
-                        <li>
-                            <a data-toggle="modal" class="btn-open-popup">
-                                {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
-                                    <img src="{% static link %}">
-                                {% endwith %}
-                            </a>
-                        </li>
-                    {% endfor %}
-
-                </ul>
-                <p class="controller">
-                    <span class="prev"><img src="{% static 'images/prev.png' %}"/></span>
-                    <span class="next"><img src="{% static 'images/next.png' %}"></span>
-                </p>
-             {% for i in genre_code %}
-                    <div class="modal">
-                        <div class="modal_body">
-                            <div class="modal-movie-post">
-                                <img class="modal-img" src="/static/images/movie_image.jpg"/>
-                            </div>
-                            <span class="main-movie-title">해적 도깨비깃발</span>
-                            <span class="main-movie-intro">
-                            <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
-                                                                                      src="/static/images/heart.png"></button>
-                            <button type="button" class="modal-button like-bnt"><img class="modal-like"
-                                                                                     src="/static/images/like.png"></button>
-                            <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
-                                                                                       src="/static/images/unlike.png"></button>
-                        </span>
-                            <div class="modal-movie-intro">
-                                <strong>
-                                    그러던 어느 날, 왜구선을 소탕하던 이들은 흔적도 없이 사라진 왕실의 보물이
-                                    어딘가 숨겨져 있다는 사실을 알게 되고 해적 인생에 다시없을 최대 규모의 보물을
-                                    찾아 위험천만한 모험에 나서기 시작한다. 하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니!
-                                    원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 보물을 차지하기
-                                    위해 바다에 뛰어드는데...! 해적과 의적, 그리고 역적 사라진 보물! 찾는 자가 주인이다!
-                                </strong>
-
-                            </div>
-                            <div class="modal-movie-cast">
-                                <ul>
-                                    <li>
-                                        <strong>출연진: 누구 누구 누구</strong>
-                                    </li>
-                                    <li>
-                                        <strong>장르 : 머머머멈머</strong>
-                                    </li>
-                                    <li>
-                                        <strong>등급 : 15세</strong>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="recommend-contents">
-                                <p><strong>비슷한 콘텐츠</strong></p>
-                                <ul>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <strong><p>해적: 도깨비 깃발</p></strong>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong> 엄청긴건 없겠지?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-            <!-- END OF MAIN CONTAINER -->
-
-            <!-- LINKS -->
-            <section class="link">
-                <div class="logos">
-                    <a href="#"><i class="fab fa-facebook-square fa-2x logo"></i></a>
-                    <a href="#"><i class="fab fa-instagram fa-2x logo"></i></a>
-                    <a href="#"><i class="fab fa-twitter fa-2x logo"></i></a>
-                    <a href="#"><i class="fab fa-youtube fa-2x logo"></i></a>
                 </div>
-                <div class="sub-links">
-                    <ul>
-                        <li><a href="#">Audio and Subtitles</a></li>
-                        <li><a href="#">Audio Description</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Gift Cards</a></li>
-                        <li><a href="#">Media Center</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Legal Notices</a></li>
-                        <li><a href="#">Corporate Information</a></li>
-                        <li><a href="#">Contact Us</a></li>
+
+                <h1 id="tvShows">TV Shows</h1>
+                <div class="slide-show">
+                    <ul class="slides-3">
+                        {% for i in similar_genre_code %}
+                            <li>
+                                <a data-toggle="modal" class="btn-open-popup">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img class="modal-img" src="{% static link %}"/>
+                                    {% endwith %}
+                                </a>
+                            </li>
+                        {% endfor %}
+
+
                     </ul>
+                    <p class="controller">
+                        <span class="prev-3"><img src="{% static 'images/prev.png' %}"/></span>
+                        <span class="next-3"><img src="{% static 'images/next.png' %}"></span>
+                    </p>
+                    {% for i in similar_genre_code %}
+                        <div class="modal">
+                            <div class="modal_body">
+                                <div class="modal-movie-post">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img class="modal-img" src="{% static link %}"/>
+                                    {% endwith %}
+                                </div>
+                                <span class="main-movie-title">{{ i.title }}</span>
+                                <span class="main-movie-intro">
+                            <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
+                                                                                      src="{% static 'images/heart.png' %}"></button>
+                            <button type="button" class="modal-button like-bnt"><img class="modal-like"
+                                                                                     src="{% static 'images/like.png' %}"></button>
+                            <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
+                                                                                       src="{% static 'images/unlike.png' %}"></button>
+                        </span>
+                                <div class="modal-movie-intro">
+                                    <strong>
+                                        {{ i.plot }}
+                                    </strong>
+
+                                </div>
+
+                                <div class="modal-movie-cast">
+                                    <ul>
+                                        <li>
+                                            <strong>{{ i.cast }}</strong>
+                                        </li>
+                                        <li>
+                                            <strong>{{ i.genre }}</strong>
+                                        </li>
+                                        <li>
+                                            <strong>{{ i.maturity_rating }}</strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="recommend-contents">
+                                    <p><strong>비슷한 콘텐츠</strong></p>
+                                    <ul>
+                                        {% for i in similar_genre_code %}
+                                            <li>
+                                                {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                                    <img class="recommend-img" src="{% static link %}">
+                                                {% endwith %}
+                                                <strong><p>{{ i.title }}</p></strong>
+
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+
+
+                <h1 id="movies">Blockbuster Action & Adventure</h1>
+                <div class="slide-show">
+                    <ul class="slides-4">
+                        {% for i in same_director_list %}
+                            <li>
+                                <a data-toggle="modal" class="btn-open-popup">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img src="{% static link %}">
+                                    {% endwith %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <p class="controller">
+                        <span class="prev-4"><img src="{% static 'images/prev.png' %}"/></span>
+                        <span class="next-4"><img src="{% static 'images/next.png' %}"></span>
+                    </p>
+                    {% for i in same_director_list %}
+                        <div class="modal">
+                            <div class="modal_body">
+                                <div class="modal-movie-post">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img class="modal-img" src="{% static link %}"/>
+                                    {% endwith %}
+
+                                </div>
+                                <span class="main-movie-title">{{ i.title }}</span>
+                                <span class="main-movie-intro">
+                            <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
+                                                                                      src="/static/images/heart.png"></button>
+                            <button type="button" class="modal-button like-bnt"><img class="modal-like"
+                                                                                     src="/static/images/like.png"></button>
+                            <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
+                                                                                       src="/static/images/unlike.png"></button>
+                        </span>
+                                <div class="modal-movie-intro">
+                                    <strong>
+                                        {{ i.plot }}
+                                    </strong>
+
+                                </div>
+                                <div class="modal-movie-cast">
+                                    <ul>
+                                        <li>
+                                            <strong>출연진: {{ i.cast }}</strong>
+                                        </li>
+                                        <li>
+                                            <strong>장르 : {{ i.genre }}</strong>
+                                        </li>
+                                        <li>
+                                            <strong>등급 : {{ i.maturity_rating }}</strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="recommend-contents">
+                                    <p><strong>비슷한 콘텐츠</strong></p>
+                                    <ul>
+                                        {% for i in same_director_list %}
+                                            <li>
+                                                {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                                    <img class="recommend-img" src="{% static link %}">
+                                                {% endwith %}
+                                                <strong><p>{{ i.title }}</p></strong>
+
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <h1 id="originals">Netflix Originals</h1>
+                <div class="slide-show">
+                    <ul class="slides">
+                        {% for i in on_release_list %}
+                            <li>
+                                <a data-toggle="modal" class="btn-open-popup">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img src="{% static link %}">
+                                    {% endwith %}
+                                </a>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                    <p class="controller">
+                        <span class="prev"><img src="{% static 'images/prev.png' %}"/></span>
+                        <span class="next"><img src="{% static 'images/next.png' %}"></span>
+                    </p>
+                    {% for i in on_release_list %}
+                        <div class="modal">
+                            <div class="modal_body">
+                                <div class="modal-movie-post">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img class="modal-img" src="{% static link %}"/>
+                                    {% endwith %}
+                                </div>
+                                <span class="main-movie-title">{{ i.title }}</span>
+                                <span class="main-movie-intro">
+                            <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
+                                                                                      src="/static/images/heart.png"></button>
+                            <button type="button" class="modal-button like-bnt"><img class="modal-like"
+                                                                                     src="/static/images/like.png"></button>
+                            <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
+                                                                                       src="/static/images/unlike.png"></button>
+                        </span>
+                                <div class="modal-movie-intro">
+                                    <strong>
+                                        {{ i.plot }}
+                                    </strong>
+
+                                </div>
+                                <div class="modal-movie-cast">
+                                    <ul>
+                                        <li>
+                                            <strong>출연진: {{ i.cast }}</strong>
+                                        </li>
+                                        <li>
+                                            <strong>장르 : {{ i.genre }}</strong>
+                                        </li>
+                                        <li>
+                                            <strong>등급 : {{ i.maturity_rating }}</strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="recommend-contents">
+                                    <p><strong>비슷한 콘텐츠</strong></p>
+                                    <ul>
+                                        {% for i in on_release_list %}
+                                            <li>
+                                                {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                                    <img class="recommend-img" src="{% static link %}">
+                                                {% endwith %}
+                                                <strong><p>{{ i.title }}</p></strong>
+
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- END OF MAIN CONTAINER -->
+
+                <!-- LINKS -->
+                <section class="link">
+                    <div class="logos">
+                        <a href="#"><i class="fab fa-facebook-square fa-2x logo"></i></a>
+                        <a href="#"><i class="fab fa-instagram fa-2x logo"></i></a>
+                        <a href="#"><i class="fab fa-twitter fa-2x logo"></i></a>
+                        <a href="#"><i class="fab fa-youtube fa-2x logo"></i></a>
+                    </div>
+                    <div class="sub-links">
+                        <ul>
+                            <li><a href="#">Audio and Subtitles</a></li>
+                            <li><a href="#">Audio Description</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Gift Cards</a></li>
+                            <li><a href="#">Media Center</a></li>
+                            <li><a href="#">Investor Relations</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Legal Notices</a></li>
+                            <li><a href="#">Corporate Information</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- END OF LINKS -->
+
+                <!-- FOOTER -->
+                <footer>
+                    <p>감사합니다.</p>
+
+                </footer>
             </section>
-            <!-- END OF LINKS -->
-
-            <!-- FOOTER -->
-            <footer>
-                <p>&copy 1997-2022 Netflix, Inc.</p>
-                <p>이건 테스트용</p>
-
-            </footer>
-        </section>
-    </div>
-</form>
+        </div>
+    </form>
     <script type="text/javascript" src="{% static 'javascript/main_page.js' %}"></script>
 {% endblock %}

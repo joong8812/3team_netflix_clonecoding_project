@@ -92,3 +92,7 @@ body{
 .img-selected > img{
     opacity: 0.1;
 }
+
+#genre_list{
+    display: none;
+}
