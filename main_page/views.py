@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import MovieModel, ClipModel
+
 from .recommender.movie_recommender import MovieRecommender
 from django.contrib.auth.decorators import login_required
+from django.contrib import auth
 
 import requests
 from bs4 import BeautifulSoup
@@ -50,3 +52,10 @@ def get_main_movie_clip():
         video_url = clip['video_url']
 
     return {'movie_id': clip['movie_id'], 'url': video_url, 'title': movie['title'], 'plot': f"{movie['plot'][:190]} ..."}
+
+# 로그아웃
+@login_required
+def logout(request):
+    print('request',request)
+    auth.logout(request)  # 인증 되어있는 정보를 없애기
+    return redirect("/")
