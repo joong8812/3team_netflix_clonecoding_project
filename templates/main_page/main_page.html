@@ -18,7 +18,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main-page.css' %}">
     {#    </head>#}
     {#<body>#}
-
+<form class="form-area" method="GET" action="/main_page/">
+    {% csrf_token %}
     <div class="wrapper">
 
         <!-- HEADER -->
@@ -560,5 +561,6 @@
             </footer>
         </section>
     </div>
+</form>
     <script type="text/javascript" src="{% static 'javascript/main_page.js' %}"></script>
 {% endblock %}

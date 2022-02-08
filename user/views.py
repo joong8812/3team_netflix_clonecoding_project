@@ -41,7 +41,7 @@ def genre(request):
         me = request.user
         me.genre_list= g_last
         me.save()
-        return render(request, 'main_page.html')
+        return redirect('/main_page')
 
     elif request.method == 'GET':
         return render(request, 'user/genre.html')

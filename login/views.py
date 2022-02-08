@@ -15,10 +15,13 @@ def login_view(request):
         if me is not None:
             auth.login(request, me)
             if me.genre_list =="":
+                print("test")
                 return redirect('/genre')  # 로그인 후 유저네임을 응답한다
             else:
-                return render(request, 'main_page.html')
+                print('test2')
+                return redirect('/main_page')
         else:
+            print("test3")
             messages.add_message(request, messages.WARNING, '유저이름 혹은 패스워드를 확인 해 주세요')
             return render(request, 'login/login.html')
 

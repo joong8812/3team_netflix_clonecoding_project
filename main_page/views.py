@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .models import MovieModel
 from .recommender.movie_recommender import MovieRecommender
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def recommend_movies(request):
     if request.method == 'GET':
         mr = MovieRecommender()
