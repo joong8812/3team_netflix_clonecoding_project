@@ -41,3 +41,14 @@ class RatingModel(models.Model):
     rating = models.CharField(max_length=2)
     timestamp = models.CharField(max_length=12)
     comment = models.CharField(max_length=65535, null=True)
+
+
+class ClipModel(models.Model):
+    class Meta:
+        db_table = 'clip'
+
+    # code, userid, rating, timestamp, comment
+    movie_id = models.CharField(max_length=6, unique=True)
+    title = models.CharField(max_length=100)
+    multimedia_id = models.CharField(max_length=5, null=True, blank=True)
+    video_url = models.CharField(max_length=256)

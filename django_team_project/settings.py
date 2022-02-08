@@ -163,7 +163,7 @@ AUTHENTICATION_BACKENDS=[
 ]
 
 # 로그인 후 redirect route
-LOGIN_REDIRECT_URL = '/main'
+LOGIN_REDIRECT_URL = '/main_page'
 # 로그아웃 후 redirect route
 ACCOUNT_LOGOUT_REDIRECT_URL = '/login'
 # Get으로도 logout 요청
