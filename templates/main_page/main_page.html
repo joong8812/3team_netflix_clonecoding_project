@@ -60,11 +60,11 @@
                 <div class="slide-show">
                     <ul class="slides-1">
                         <!-- 반복할 곳 -->
-                        {% for i in similar_code %}
+                        {% for i in movie_list %}
                             <li>
                                 <a data-toggle="modal" class="btn-open-popup">
-                                    {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
-                                       <img src="{% static link %}">
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                        <img src="{% static link %}">
                                     {% endwith %}
                                 </a>
 
@@ -79,41 +79,40 @@
                     </p>
                     <!-- Modal -->
                     <!-- 반복할 곳 -->
-                {% for i in genre_code %}
+                    {% for i in movie_list %}
                     <div class="modal">
                         <div class="modal_body">
                             <div class="modal-movie-post">
-                                <img class="modal-img" src="/static/images/movie_image.jpg"/>
+                                {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                    <img class="modal-img" src="{% static link %}"/>
+                                {% endwith %}
                             </div>
-                            <span class="main-movie-title">해적 도깨비깃발</span>
+                            <span class="main-movie-title">{{ i.title }}</span>
                             <span class="main-movie-intro">
                             <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
-                                                                                      src="/static/images/heart.png"></button>
+                                                                                      src="{% static 'images/heart.png' %}"></button>
                             <button type="button" class="modal-button like-bnt"><img class="modal-like"
-                                                                                     src="/static/images/like.png"></button>
+                                                                                     src="{% static 'images/like.png' %}"></button>
                             <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
-                                                                                       src="/static/images/unlike.png"></button>
+                                                                                       src="{% static 'images/unlike.png' %}"></button>
                         </span>
                             <div class="modal-movie-intro">
                                 <strong>
-                                    그러던 어느 날, 왜구선을 소탕하던 이들은 흔적도 없이 사라진 왕실의 보물이
-                                    어딘가 숨겨져 있다는 사실을 알게 되고 해적 인생에 다시없을 최대 규모의 보물을
-                                    찾아 위험천만한 모험에 나서기 시작한다. 하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니!
-                                    원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 보물을 차지하기
-                                    위해 바다에 뛰어드는데...! 해적과 의적, 그리고 역적 사라진 보물! 찾는 자가 주인이다!
+                                    {{ i.plot }}
                                 </strong>
 
                             </div>
+
                             <div class="modal-movie-cast">
                                 <ul>
                                     <li>
-                                        <strong>출연진: 누구 누구 누구</strong>
+                                        <strong>{{ i.cast }}</strong>
                                     </li>
                                     <li>
-                                        <strong>장르 : 머머머멈머</strong>
+                                        <strong>{{ i.genre }}</strong>
                                     </li>
                                     <li>
-                                        <strong>등급 : 15세</strong>
+                                        <strong>{{ i.maturity_rating }}</strong>
                                     </li>
                                 </ul>
                             </div>
@@ -132,24 +131,12 @@
                                         <img class="recommend-img" src="/static/images/movie_image.jpg"/>
                                         <p><strong> 엄청긴건 없겠지?</strong></p>
                                     </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
                                 </ul>
 
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
                     <!--여기까지 반복-->
                 </div>
             </div>
@@ -172,7 +159,6 @@
                     <span class="prev-2"><img src="{% static 'images/prev.png' %}"/></span>
                     <span class="next-2"><img src="{% static 'images/next.png' %}"></span>
                 </p>
-             {% for i in genre_code %}
                     <div class="modal">
                         <div class="modal_body">
                             <div class="modal-movie-post">
@@ -242,7 +228,6 @@
                             </div>
                         </div>
                     </div>
-                {% endfor %}
                     <!--여기까지 반복-->
             </div>
 
@@ -252,8 +237,8 @@
                      {% for i in similar_genre_code %}
                         <li>
                             <a data-toggle="modal" class="btn-open-popup">
-                                {% with link='images/movies/movie_'|add:i|add:'.jpg' %}
-                                    <img src="{% static link %}">
+                                {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                    <img class="modal-img" src="{% static link %}"/>
                                 {% endwith %}
                             </a>
                         </li>
@@ -265,41 +250,40 @@
                     <span class="prev-3"><img src="{% static 'images/prev.png' %}"/></span>
                     <span class="next-3"><img src="{% static 'images/next.png' %}"></span>
                 </p>
-             {% for i in genre_code %}
+             {% for i in similar_genre_code %}
                     <div class="modal">
                         <div class="modal_body">
                             <div class="modal-movie-post">
-                                <img class="modal-img" src="/static/images/movie_image.jpg"/>
+                                {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                    <img class="modal-img" src="{% static link %}"/>
+                                {% endwith %}
                             </div>
-                            <span class="main-movie-title">해적 도깨비깃발</span>
+                            <span class="main-movie-title">{{ i.title }}</span>
                             <span class="main-movie-intro">
                             <button type="button" class="modal-button heart-bnt"><img class="modal-heart"
-                                                                                      src="/static/images/heart.png"></button>
+                                                                                      src="{% static 'images/heart.png' %}"></button>
                             <button type="button" class="modal-button like-bnt"><img class="modal-like"
-                                                                                     src="/static/images/like.png"></button>
+                                                                                     src="{% static 'images/like.png' %}"></button>
                             <button type="button" class="modal-button unlike-bnt"><img class="modal-unlike"
-                                                                                       src="/static/images/unlike.png"></button>
+                                                                                       src="{% static 'images/unlike.png' %}"></button>
                         </span>
                             <div class="modal-movie-intro">
                                 <strong>
-                                    그러던 어느 날, 왜구선을 소탕하던 이들은 흔적도 없이 사라진 왕실의 보물이
-                                    어딘가 숨겨져 있다는 사실을 알게 되고 해적 인생에 다시없을 최대 규모의 보물을
-                                    찾아 위험천만한 모험에 나서기 시작한다. 하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니!
-                                    원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 보물을 차지하기
-                                    위해 바다에 뛰어드는데...! 해적과 의적, 그리고 역적 사라진 보물! 찾는 자가 주인이다!
+                                    {{ i.plot }}
                                 </strong>
 
                             </div>
+
                             <div class="modal-movie-cast">
                                 <ul>
                                     <li>
-                                        <strong>출연진: 누구 누구 누구</strong>
+                                        <strong>{{ i.cast }}</strong>
                                     </li>
                                     <li>
-                                        <strong>장르 : 머머머멈머</strong>
+                                        <strong>{{ i.genre }}</strong>
                                     </li>
                                     <li>
-                                        <strong>등급 : 15세</strong>
+                                        <strong>{{ i.maturity_rating }}</strong>
                                     </li>
                                 </ul>
                             </div>
@@ -318,24 +302,12 @@
                                         <img class="recommend-img" src="/static/images/movie_image.jpg"/>
                                         <p><strong> 엄청긴건 없겠지?</strong></p>
                                     </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
-                                    <li>
-                                        <img class="recommend-img" src="/static/images/movie_image.jpg"/>
-                                        <p><strong>제목?</strong></p>
-                                    </li>
                                 </ul>
 
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
             </div>
 
 

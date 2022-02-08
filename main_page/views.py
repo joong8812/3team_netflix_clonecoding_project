@@ -16,18 +16,39 @@ def recommend_movies(request):
         mr = MovieRecommender()
         similar = mr.get_similar_movies_on_ibcf('161967', 12)
         similar_recommend = MovieRecommender().get_similar_movies_on_lfcf('161967', 12)
-        similar_genre_code = MovieRecommender().get_movies_on_same_genre('93728', 12)
-        similar_code = []
+        similar_genre = MovieRecommender().get_movies_on_same_genre('93728', 12)
         similar_recommend_code = []
+        movie_list = []
+        similar_genre_code = []
         for i in similar:
-            similar_code.append(str(i))
+            movie_info = {}
+            movie = MovieModel.objects.get(movie_id=i)
+            movie_info['movie_id'] = movie.movie_id
+            movie_info['title'] = movie.title
+            movie_info['genre'] = movie.genre
+            movie_info['maturity_rating'] = movie.maturity_rating
+            movie_info['director'] = movie.director
+            movie_info['cast'] = movie.cast
+            movie_info['plot'] = movie.plot
+            movie_list.append(movie_info)
+
+        for g in similar_genre:
+            movie_ginfo = {}
+            movie = MovieModel.objects.get(movie_id=g)
+            movie_ginfo['movie_id'] = movie.movie_id
+            movie_ginfo['title'] = movie.title
+            movie_ginfo['genre'] = movie.genre
+            movie_ginfo['maturity_rating'] = movie.maturity_rating
+            movie_ginfo['director'] = movie.director
+            movie_ginfo['cast'] = movie.cast
+            movie_ginfo['plot'] = movie.plot
+            similar_genre_code.append(movie_ginfo)
         for i in range(12):
             similar_recommend_code.append(str(similar_recommend[i][1]))
 
-        print(similar_genre_code)
         main_movie_clip = get_main_movie_clip()
-        return render(request, 'main_page/main_page.html', {'similar_code': similar_code, 'similar_recommend_code':similar_recommend_code,
-                                                            'similar_genre_code':similar_genre_code, 'main_movie_clip':main_movie_clip})
+        return render(request, 'main_page/main_page.html', {'movie_list': movie_list, 'similar_recommend_code': similar_recommend_code,
+                                                            'similar_genre_code': similar_genre_code, 'main_movie_clip': main_movie_clip})
 
 
 # 영화 클립 url을 돌려준다
@@ -56,6 +77,5 @@ def get_main_movie_clip():
 # 로그아웃
 @login_required
 def logout(request):
-    print('request',request)
     auth.logout(request)  # 인증 되어있는 정보를 없애기
     return redirect("/")

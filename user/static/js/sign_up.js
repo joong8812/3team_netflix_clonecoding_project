@@ -67,16 +67,3 @@ profile_name.addEventListener('keyup', function (){ //키를 놓을 때 발생�
         name_error.style.visibility ='hidden';
     }
 })
-
-// 오류가 났을 때
-
-
-// 버튼 클릭시 유효성 검사
-// function checkInput(){
-//     //trim()을 통해 공백제거 후 값 가져오기
-//     emailValue = email.value.trim();
-//     passwordValue = password.value.trim();
-//
-//     // email 형식이 아닐때
-//     if(emailValue)
-// }
