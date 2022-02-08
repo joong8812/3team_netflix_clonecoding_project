@@ -186,4 +186,66 @@ window.onclick = function (event) {
 }
 
 
+const makeIframeForClip = (clipUrl) => {
+    const iframeTag = document.createElement('iframe');
+    iframeTag.setAttribute('src', clipUrl);
+    iframeTag.setAttribute('frameborder', 'no');
+    iframeTag.setAttribute('scrolling', 'no');
+    iframeTag.setAttribute('marginwidth', '0');
+    iframeTag.setAttribute('marginheight', '0');
+    iframeTag.setAttribute('WIDTH', '300');
+    iframeTag.setAttribute('HEIGHT', '180');
+    iframeTag.setAttribute('allow', 'autoplay');
+    return iframeTag;
+}
+
+const makeImgForMR = (mr) => {
+    const imgTag = document.createElement('img');
+    let imgName = "../static/images/mr/";
+    if (mr == '전체') {
+        imgName += 'all.png';
+    } else if (mr === '12') {
+        imgName += '12.png';
+    } else if (mr === '15') {
+        imgName += '15.png';
+    } else {
+        imgName += '18.png';
+    }
+    imgTag.setAttribute('src', imgName);
+    return imgTag;
+}
+
+const mouseEnterMovieDiv = (event) => {
+    event.target.children[0].classList.toggle('hidden'); // .movie-thumb-fist
+    event.target.children[1].classList.toggle('hidden'); // .movie-thumb-last
+    const lastTop = event.target.children[1].children[0];
+    const clipUrl = lastTop.getAttribute('data-url');
+    
+    lastTop.children[0].classList.toggle('hidden');
+    let newTag = makeIframeForClip(clipUrl);
+    lastTop.appendChild(newTag)
+
+    // 관람 등급
+    const maturityRating = lastTop.getAttribute('data-mr');
+    newTag = makeImgForMR(maturityRating);
+    const mrDiv = event.target.children[1].children[1].querySelector(".maturity-rating");
+    if (mrDiv.children.length == 0) {
+        mrDiv.appendChild(newTag);
+    }
+};
+
+const mouseLeaveMovieDiv = (event) => {
+    event.target.children[0].classList.toggle('hidden');
+    event.target.children[1].classList.toggle('hidden');
+    lastTop = event.target.children[1].children[0];
+    lastTop.children[0].classList.toggle('hidden');
+    lastTop.removeChild(lastTop.children[1]);
+};
+
+slideImages = document.querySelectorAll('.movie-thumb');
+console.log(slideImg)
+for (let i=0; i<slideImages.length; i++) {
+    slideImages[i].addEventListener('mouseenter', mouseEnterMovieDiv);
+    slideImages[i].addEventListener('mouseleave', mouseLeaveMovieDiv);
+}
 

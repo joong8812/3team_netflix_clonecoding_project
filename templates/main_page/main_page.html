@@ -57,22 +57,37 @@
             <!-- MAIN CONTAINER -->
             <section class="main-container">
                 <div class="location" id="home">
-                    <h1 id="Popular on Netflix">Popular on Netflix</h1>
+                    <h1 id="Popular on Netflix">선호 영화 유사</h1>
                     <div class="slide-show">
                         <ul class="slides-1">
                             <!-- 반복할 곳 -->
                             {% for i in movie_list %}
                                 <li>
-                                    <a data-toggle="modal" class="btn-open-popup">
+                                    <div class="movie-thumb" data-movieid={{i.movie_id}}>
                                         {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
-                                            <img src="{% static link %}">
+                                        <div class="movie-thumb-first">
+                                            <div class="movie-thumb-first-top">
+                                                <img class="img-thumb" src="{% static link %}">
+                                            </div>
+                                        </div>
+                                        <div class="movie-thumb-last hidden">
+                                            <div class="movie-thumb-last-top" data-url={{i.clip_url}} data-mr={{i.maturity_rating}}>
+                                                <img class="img-thumb" src="{% static link %}">
+                                            </div>
+                                            <div class="movie-thumb-last-bottom">
+                                                <div class="title-thumb">{{i.title}}</div>
+                                                <div class="maturity-rating"></div>
+                                                <div>
+                                                    <div class="genre-thumb">{{i.genre}}</div>
+                                                    <div class="more-info-arrow"><a data-toggle="modal" class="btn-open-popup"><img src="{% static 'images/angle-circle-down.png'%}"></a></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         {% endwith %}
-                                    </a>
-
+                                    </div>
                                 </li>
                             {% endfor %}
                             <!--여기까지 반복-->
-
                         </ul>
                         <p class="controller">
                             <span class="prev-1"><img src="{% static 'images/prev.png' %}"/></span>
@@ -139,16 +154,33 @@
                     </div>
                 </div>
 
-                <h1 id="myList">Trending Now</h1>
+                <h1 id="myList">높은 평가 기대 영화</h1>
                 <div class="slide-show">
                     <ul class="slides-2">
                         {% for i in similar_recommend_code %}
                             <li>
-                                <a data-toggle="modal" class="btn-open-popup">
+                                <div class="movie-thumb" data-movieid={{i.movie_id}}>
                                     {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
-                                        <img src="{% static link %}">
+                                    <div class="movie-thumb-first">
+                                        <div class="movie-thumb-first-top">
+                                            <img class="img-thumb" src="{% static link %}">
+                                        </div>
+                                    </div>
+                                    <div class="movie-thumb-last hidden">
+                                        <div class="movie-thumb-last-top" data-url={{i.clip_url}} data-mr={{i.maturity_rating}}>
+                                            <img class="img-thumb" src="{% static link %}">
+                                        </div>
+                                        <div class="movie-thumb-last-bottom">
+                                            <div class="title-thumb">{{i.title}}</div>
+                                            <div class="maturity-rating"></div>
+                                            <div>
+                                                <div class="genre-thumb">{{i.genre}}</div>
+                                                <div class="more-info-arrow"><a data-toggle="modal" class="btn-open-popup"><img src="{% static 'images/angle-circle-down.png'%}"></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     {% endwith %}
-                                </a>
+                                </div>
                             </li>
                         {% endfor %}
 
@@ -214,16 +246,33 @@
                     <!--여기까지 반복-->
                 </div>
 
-                <h1 id="tvShows">TV Shows</h1>
+                <h1 id="tvShows">선호 장르 영화</h1>
                 <div class="slide-show">
                     <ul class="slides-3">
                         {% for i in similar_genre_code %}
                             <li>
-                                <a data-toggle="modal" class="btn-open-popup">
+                                <div class="movie-thumb" data-movieid={{i.movie_id}}>
                                     {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
-                                        <img class="modal-img" src="{% static link %}"/>
+                                    <div class="movie-thumb-first">
+                                        <div class="movie-thumb-first-top">
+                                            <img class="img-thumb" src="{% static link %}">
+                                        </div>
+                                    </div>
+                                    <div class="movie-thumb-last hidden">
+                                        <div class="movie-thumb-last-top" data-url={{i.clip_url}} data-mr={{i.maturity_rating}}>
+                                            <img class="img-thumb" src="{% static link %}">
+                                        </div>
+                                        <div class="movie-thumb-last-bottom">
+                                            <div class="title-thumb">{{i.title}}</div>
+                                            <div class="maturity-rating"></div>
+                                            <div>
+                                                <div class="genre-thumb">{{i.genre}}</div>
+                                                <div class="more-info-arrow"><a data-toggle="modal" class="btn-open-popup"><img src="{% static 'images/angle-circle-down.png'%}"></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     {% endwith %}
-                                </a>
+                                </div>
                             </li>
                         {% endfor %}
 
@@ -291,16 +340,33 @@
                 </div>
 
 
-                <h1 id="movies">Blockbuster Action & Adventure</h1>
+                <h1 id="movies">선호 감독 영화</h1>
                 <div class="slide-show">
                     <ul class="slides-4">
                         {% for i in same_director_list %}
                             <li>
-                                <a data-toggle="modal" class="btn-open-popup">
+                                <div class="movie-thumb" data-movieid={{i.movie_id}}>
                                     {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
-                                        <img src="{% static link %}">
+                                    <div class="movie-thumb-first">
+                                        <div class="movie-thumb-first-top">
+                                            <img class="img-thumb" src="{% static link %}">
+                                        </div>
+                                    </div>
+                                    <div class="movie-thumb-last hidden">
+                                        <div class="movie-thumb-last-top" data-url={{i.clip_url}} data-mr={{i.maturity_rating}}>
+                                            <img class="img-thumb" src="{% static link %}">
+                                        </div>
+                                        <div class="movie-thumb-last-bottom">
+                                            <div class="title-thumb">{{i.title}}</div>
+                                            <div class="maturity-rating"></div>
+                                            <div>
+                                                <div class="genre-thumb">{{i.genre}}</div>
+                                                <div class="more-info-arrow"><a data-toggle="modal" class="btn-open-popup"><img src="{% static 'images/angle-circle-down.png'%}"></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     {% endwith %}
-                                </a>
+                                </div>
                             </li>
                         {% endfor %}
                     </ul>
@@ -365,16 +431,38 @@
                     {% endfor %}
                 </div>
 
-                <h1 id="originals">Netflix Originals</h1>
+                <h1 id="originals">설날 개봉 영화</h1>
                 <div class="slide-show">
                     <ul class="slides">
                         {% for i in on_release_list %}
                             <li>
-                                <a data-toggle="modal" class="btn-open-popup">
+                                <div class="movie-thumb" data-movieid={{i.movie_id}}>
+                                    {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
+                                    <div class="movie-thumb-first">
+                                        <div class="movie-thumb-first-top">
+                                            <img class="img-thumb" src="{% static link %}">
+                                        </div>
+                                    </div>
+                                    <div class="movie-thumb-last hidden">
+                                        <div class="movie-thumb-last-top" data-url={{i.clip_url}} data-mr={{i.maturity_rating}}>
+                                            <img class="img-thumb" src="{% static link %}">
+                                        </div>
+                                        <div class="movie-thumb-last-bottom">
+                                            <div class="title-thumb">{{i.title}}</div>
+                                            <div class="maturity-rating"></div>
+                                            <div>
+                                                <div class="genre-thumb">{{i.genre}}</div>
+                                                <div class="more-info-arrow"><a data-toggle="modal" class="btn-open-popup"><img src="{% static 'images/angle-circle-down.png'%}"></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endwith %}
+                                </div>
+                                {% comment %} <a data-toggle="modal" class="btn-open-popup">
                                     {% with link='images/movies/movie_'|add:i.movie_id|add:'.jpg' %}
                                         <img src="{% static link %}">
                                     {% endwith %}
-                                </a>
+                                </a> {% endcomment %}
                             </li>
                         {% endfor %}
 

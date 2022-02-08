@@ -47,10 +47,11 @@ class MovieRecommender:
         for genre in genres:
             movie_list.append(MovieModel.objects.filter(genre=genre).values())
         random_list = []
-        for _ in range(amounts):
+        while len(random_list) <= amounts:
             genre_count = len(movie_list)
             random_index = random.randrange(genre_count)
             random_list.append(movie_list[random_index][random.randrange(0, len(movie_list[random_index]))]['movie_id'])
+            random_list = list(set(random_list)) # 중복 제거
         return random_list
 
 
