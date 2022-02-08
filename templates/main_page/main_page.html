@@ -46,14 +46,9 @@
         <!-- END OF HEADER -->
         <section class="main-movie">
             <div class="main-movie-post">
-                <img src="/static/images/movie_image.jpg">
-                <span class="main-movie-title">해적: 도깨비깃발 </span>
-                <span class="main-movie-intro">
-               그러던 어느 날, 왜구선을 소탕하던 이들은 흔적도 없이 사라진 왕실의 보물이
-               어딘가 숨겨져 있다는 사실을 알게 되고 해적 인생에 다시없을 최대 규모의 보물을
-               찾아 위험천만한 모험에 나서기 시작한다. 하지만 사라진 보물을 노리는 건 이들뿐만이 아니었으니!
-               원하는 것을 얻기 위해 수단과 방법을 가리지 않는 역적 ‘부흥수’(권상우) 또한 보물을 차지하기
-               위해 바다에 뛰어드는데...! 해적과 의적, 그리고 역적 사라진 보물! 찾는 자가 주인이다!
+                <iframe id='clip' src='{{main_movie_clip.url}}' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='2000' HEIGHT='700' allow='autoplay' allowfullscreen></iframe>
+                <span class="main-movie-title">{{main_movie_clip.title}}</span>
+                <span class="main-movie-intro">{{main_movie_clip.plot}}</span>
            </span>
             </div>
         </section>
