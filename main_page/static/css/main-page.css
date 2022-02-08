@@ -406,7 +406,7 @@ footer {
     position: absolute;
     width: 30%;
     right: 0;
-    top: 60%;
+    top: 90%;
 }
 
 .recommend-img{
@@ -422,7 +422,7 @@ footer {
     list-style-type: none;
 }
 .recommend-contents p {
-    margin-top: 10px;
+    margin-top: 50px;
     text-align: center;
 }
 
