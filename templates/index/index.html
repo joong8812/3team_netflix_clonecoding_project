@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-랜딩페이지
+    소개
 {% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
-{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+            integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">{% endblock %}
+    <script src="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/snow.js"></script>
+
 {% block content %}
 
 
@@ -13,119 +19,129 @@
 
 {#    <link rel="icon" href="{% static 'icon/favicon.ico' %}">#}
 
+    <div id="prolog_start"">
+        <h1>🦋3조 - 코딩하긴 했었나요 스쳐지나가는 인연이었나요 함께했던 시간들이 자꾸 삼조🦋</h1>
+        <div id="three_count"></div>
+        <div id="pro_logo"></div>
+        <button type="button" id="bim" onclick="three_count(); pro_logo(); landing();"><img src='https://ifh.cc/g/I8k9mp.png'></button>
+    </div>
+    <!-- prolog -->
+    <div id="landing" class="hidden_land">
+        <div class="card1">
+            <div class="head">
+                <img src="{% static 'img/logo.png' %}" class="head-logo">
+                <a href="/login" class="btn">로그인</a>
+            </div>
+            <div class="card1-content">
+                <h1 class="card-content-title">설날에 한국 영화를 무제한으로.</h1>
+                <h3 class="card-content-subtitle">가족들과 함께 시청하세요. 혼자서도 언제든 감상가능합니다.</h3>
+                <h4>시청할 준비가 되셨나요? 사용자의 취향에 맞춰 재미있는 영화를 추천해드립니다.</h4>
+                <h4>멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요</h4>
 
-    <div class="card1">
-        <div class="head">
-            <img src="{% static 'img/logo.png' %}" class="head-logo">
-            <a href="/login" class="btn">로그인</a>
-        </div>
-        <div class="card1-content">
-            <h1 class="card-content-title">설날에 가족들과 한국 영화 즐기세요.</h1>
-            <h2 class="card-content-subtitle">사용자의 취향에 맞게 재밌는 영화를 추천해드립니다.</h2>
-            <p>시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</p>
-        
-            <form class="card1-form">
-                <div class="email">
-                    <label for="form-email" class="email-text">이메일 주소</label>
-                    <input type="email"
-                    id="form-email"
-                    name="email"
-                    value=""
-                    tabindex="0"
-                    autocomplete="email"
-                    maxlength="50"
-                    minlength="5">
-                    
-                </div>
-                
-                <button type="submit" class="btn submit-btn">시작하기 ></button>
-            </form>
-        </div>
-    </div>
-    <!-- AI 추천 기능  -->
-    <div class="card card2">
-        <div class="card2-content">
-            <img class="card2-imgbox" src="{% static 'img/tv.png' %}">
-        </div>
-        <div class="card2-text">
-            <h1 class="card-text-title">AI가 추천해주는 영화</h1>
-            <h2 class="card-text-subtitle">사용자의 취향저격 영화를 추천해줍니다.</h2>
-        </div>
-    </div>
-    <!-- 음성 검색  -->
-    <div class="card card3">
-        <div class="card3-text">
-            <h1 class="card-text-title">보고 싶은 영화를 명대사로 
-                검색해 보세요.</h1>
-            <h2 class="card-text-subtitle">쉽고 빠르게 검색이 가능합니다.</h2>
-        </div>
-        <div class="card3-content">
-            <img class="card3-img" src="{% static 'img/card_content.png' %}">
-        </div>
-    </div>
-    <!-- SNS login -->
-    <div class="card card4">
-        <div class="card4-content">
-            <img class="card4-img" src="{% static 'img/sns.png' %}">
-        </div>
-        <div class="card4-text">
-            <h1 class="card-text-title">소셜 로그인으로 간편하게 즐기세요 :)</h1>
-            <h2 class="card-text-subtitle">카카오톡, 네이버, 페이스북 로그인이 가능합니다.</h2>
-        </div>
-    </div>
-    <!-- 팀원 소개 -->
-    <div class="card card5">
-        <h1 class="card5-title">팀원 소개</h1>
-        <ul class="team">
-            <li class="team-item">
-                <div class="profile">
-                    <img src="{% static 'img/center.png' %}">
-                    <div class="profile-content">
-                        <h2>최중재<span>로그인 페이지, AI</span></h2>
-                        <p>뭉치면 살고, 흩어지면 죽는다. '붐~'</p>
-                    </div>
-                </div>
-            </li>
-            <li class="team-item">
-                <div class="profile">
-                    <img src="{% static 'img/one.png' %}">
-                    <div class="profile-content">
-                        <h2>정심일<span>메인페이지</span></h2>
-                        <p>안녕하세요 정심일입니다</p>
-                    </div>
-                </div>
-            </li>
-            <li class="team-item">
-                <div class="profile">
-                    <img src="{% static 'img/line.gif' %}">
-                    <div class="profile-content">
-                        <h2>선하진<span>회원가입페이지</span></h2>
-                        <p>안녕하세요 선하진입니다</p>
-                    </div>
-                </div>
-            </li>
-            <li class="team-item">
-                <div class="profile">
-                    <img src="{% static 'img/zero.png' %}">
-                    <div class="profile-content">
-                        <h2>박재영<span>랜딩페이지, 찜페이지</span></h2>
-                        <p>즐거웠습니다 :)</p>
-                    </div>
-                </div>
-            </li>
-            <li class="team-item">
-                <div class="profile">
-                    <img src="{% static 'img/me.jpg' %}">
-                    <div class="profile-content">
-                        <h2>정미정<span>회원가입페이지, 상세페이지</span></h2>
-                        <p>안녕하세요 정미정입니다</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                <form class="card1-form">
+                    <div class="email">
+                        <label for="form-email" class="email-text">이메일 주소</label>
+                        <input type="email"
+                        id="form-email"
+                        name="email"
+                        value=""
+                        tabindex="0"
+                        autocomplete="email"
+                        maxlength="50"
+                        minlength="5">
 
+                    </div>
+
+                    <button type="submit" class="btn submit-btn">시작하기 ></button>
+                </form>
+            </div>
+        </div>
+        <!-- AI 추천 기능  -->
+        <div class="card card2">
+            <div class="card2-content">
+                <img class="card2-imgbox" src="{% static 'img/tv.png' %}">
+            </div>
+            <div class="card2-text">
+                <h1 class="card-text-title">AI가 추천해주는 영화</h1>
+                <h2 class="card-text-subtitle">사용자의 취향저격 영화를 추천해줍니다.</h2>
+            </div>
+        </div>
+        <!-- 음성 검색  -->
+        <div class="card card3">
+            <div class="card3-text">
+                <h1 class="card-text-title">보고 싶은 영화를 명대사로 검색해 보세요.</h1>
+                <h2 class="card-text-subtitle">쉽고 빠르게 검색이 가능합니다.</h2>
+            </div>
+            <div class="card3-content">
+                <img class="card3-img" src="{% static 'img/card_content.png' %}">
+            </div>
+        </div>
+        <!-- SNS login -->
+        <div class="card card4">
+            <div class="card4-content">
+                <img class="card4-img" src="{% static 'img/sns.png' %}">
+            </div>
+            <div class="card4-text">
+                <h1 class="card-text-title">소셜 로그인으로 간편하게 즐기세요 :)</h1>
+                <h2 class="card-text-subtitle">카카오톡, 네이버, 페이스북 로그인이 가능합니다.</h2>
+            </div>
+        </div>
+        <!-- 팀원 소개 -->
+        <div class="card card5">
+            <h1 class="card5-title">팀원 소개</h1>
+            <ul class="team">
+                <li class="team-item">
+                    <div class="profile">
+                        <img src="{% static 'img/center.png' %}">
+                        <div class="profile-content">
+                            <h2>최중재<span>로그인 페이지, AI</span></h2>
+                            <p>뭉치면 살고, 흩어지면 죽는다. '붐~'</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="team-item">
+                    <div class="profile">
+                        <img src="{% static 'img/one.png' %}">
+                        <div class="profile-content">
+                            <h2>정심일<span>메인페이지</span></h2>
+                            <p>안녕하세요 정심일입니다</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="team-item">
+                    <div class="profile">
+                        <img src="{% static 'img/line.gif' %}">
+                        <div class="profile-content">
+                            <h2>선하진<span>회원가입페이지</span></h2>
+                            <p>새해 복 많이 주세양</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="team-item">
+                    <div class="profile">
+                        <img src="{% static 'img/zero.png' %}">
+                        <div class="profile-content">
+                            <h2>박재영<span>랜딩페이지, 찜페이지</span></h2>
+                            <p>즐거웠습니다 :)</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="team-item">
+                    <div class="profile">
+                        <img src="{% static 'img/me.jpg' %}">
+                        <div class="profile-content">
+                            <h2>정미정<span>회원가입페이지, 상세페이지</span></h2>
+                            <p>안녕하세요 정미정입니다</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
     </div>
 
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
 
 
     <script>
@@ -144,5 +160,3 @@
         //     setTimeout(carousel, 4000); // Change image every 2 seconds
         // }
     </script>
-
-{% endblock %}
