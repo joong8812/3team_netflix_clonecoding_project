@@ -1,10 +1,14 @@
+* {
+   font-family: 'Gowun Dodum', sans-serif;
+}
+
 h1 {
-    color: #744f06;
+    color: black;
     margin-bottom: 3vw;
 }
 
 body {
-    background-color: #F4B436;
+    background-color: black;
 }
 
 #main {
@@ -20,8 +24,8 @@ body {
 }
 
 #logo-wrapper > img {
-    height: 45px;
-    width: 167px;
+    height: 100px;
+    width: 300px;
 }
 
 #content {
@@ -29,12 +33,15 @@ body {
 }
 
 #content #login-box {
-    margin: 0 auto;
-    padding: 60px 70px;
-    width: 500px;
-    min-height: 660px;
-    background-color: rgba(229, 229, 199, 0.6);
-
+    border: #e6b129 solid 5px;
+    border-radius: 10%;
+    box-shadow: 0 0 20px 2px #ffb122;
+    margin: auto;
+    margin-top: 60px;
+    width: 450px;
+    height: 780px;
+    background-color: #eeebe8;
+    padding: 40px;
     display: flex;
     flex-direction: column;
 }
@@ -86,11 +93,11 @@ body {
 }
 
 #notice-signup-wrapper>p>span {
-    color: #737373;
+    color: #4f4f4f;
 }
 
 #notice-signup-wrapper>p>a {
-    color: #744f06;
+    color: #4f4f4f;
     text-decoration: none;
 }
 
