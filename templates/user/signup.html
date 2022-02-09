@@ -8,8 +8,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/sign_up.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <div class="form-container">
-        <div>
-            <img src="{% static 'images/searologo.png' %}" alt="LOGO" style="width: 40%; height: auto; margin-left: 30%">
+        <div id="logo">
+            <img id="logo_img" src="{% static 'images/searologo.png' %}" alt="LOGO">
         </div>
 
         <form class="form-area" id="form-area" method="post" onsubmit="return rebye();" action="/sign-up/">
@@ -44,7 +44,7 @@
 
                 </div>
                 <div class="back">
-                    <a href="#" onclick="document.getElementById('form-area').submit(); ">
+                    <a href="#" id="a_tag" onclick="document.getElementById('form-area').submit(); ">
                     <div class="button_base b08_3d_pushback">    
                         <div>확인</div>
                         <div>하시겠어요?</div>
