@@ -3,6 +3,10 @@
 }
 
 body{
+    background-color: black;
+}
+
+#genre-wrapper {
     border: #e6b129 solid 1px;
     border-radius: 5%;
     box-shadow: 0px 0px 20px 2px #ffb122;
@@ -12,6 +16,7 @@ body{
     justify-content: center;
     align-items: center;
     display: flex;
+    background-color: #eeebe8;
 }
 
 .genre{
