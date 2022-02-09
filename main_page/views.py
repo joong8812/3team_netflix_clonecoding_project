@@ -205,9 +205,10 @@ def search1(receive_text):
 def string_filter(text):
     pass
     # filtered_string = re.sub('[-=+,#/\?:^.@*\"※~ㆍ!』'|\(\)\[\]`\'…》\"\"\'·]', '', text)
-    # result_string = filtered_string.replace(' ', '')
-    #
-    # return result_string
+    filtered_string = text.replace('.', '')
+    result_string = filtered_string.replace(' ', '')
+
+    return result_string
 
 
 def movie_id_quotes():
@@ -219,11 +220,11 @@ def movie_id_quotes():
 
     for q in quotes:
         if q.movie_id == str(before_movie_id):
-            tmp_list.append(q.quote)
+            tmp_list.append(string_filter(q.quote))
         else:
             quote_dict[before_movie_id] = tmp_list
             tmp_list = []
-            tmp_list.append(q.quote)
+            tmp_list.append(string_filter(q.quote))
 
         before_movie_id = q.movie_id
 
