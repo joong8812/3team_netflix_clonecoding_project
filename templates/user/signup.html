@@ -12,7 +12,7 @@
             <img src="{% static 'images/searologo.png' %}" alt="LOGO" style="width: 40%; height: auto; margin-left: 30%">
         </div>
 
-        <form class="form-area" method="post" onsubmit="return rebye();" action="/sign-up/">
+        <form class="form-area" id="form-area" method="post" onsubmit="return rebye();" action="/sign-up/">
             {% csrf_token %}
             <div class="form-grp">
                 <input type="email" name="email" placeholder="user@email.com" id="email">
@@ -44,11 +44,14 @@
 
                 </div>
                 <div class="back">
-                    <button type="submit" class="button_base b08_3d_pushback">
+                    <a href="#" onclick="document.getElementById('form-area').submit(); ">
+                    <div class="button_base b08_3d_pushback">    
                         <div>확인</div>
                         <div>하시겠어요?</div>
-                    </button>
-                                        <div class="button_base b08_3d_pushback">
+                    </div>
+                    </a>
+                    
+                    <div class="button_base b08_3d_pushback">
                         <div>취소</div>
                         <div>하시겠어요?</div>
                     </div>
