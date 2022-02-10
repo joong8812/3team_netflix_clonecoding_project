@@ -22,7 +22,7 @@ ___
 ![architecture](https://user-images.githubusercontent.com/18342765/153375293-115c6de1-7a39-4391-b462-0338aa7cf7d6.png)
 
 ## 기획 ✏️
-<img alt="설날에뭐하지_기획" src="https://user-images.githubusercontent.com/18342765/153374591-52501bc0-c139-48fc-a932-2eabb1f1fae4.png">
+<img width="1024" alt="설날에뭐하지_기획 copy" src="https://user-images.githubusercontent.com/18342765/153380408-c7013a3d-8556-4c64-a581-7984ea4aca4c.png">
 
 ## 기능 📸
 * [랜딩페이지] `설날에 뭐보지?` 소개
