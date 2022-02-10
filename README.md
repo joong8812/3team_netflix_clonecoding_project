@@ -47,7 +47,7 @@ ___
 ## [위키](https://github.com/joneheart/3team_netflix_clonecoding_project/wiki/%EC%BD%94%EC%8A%A4%EC%9D%B8%ED%95%A8%EC%8B%9C-3%EC%A1%B0-%EC%9C%84%ED%82%A4) 📚
 ### [영화 이미지 호출](https://github.com/joneheart/3team_netflix_clonecoding_project/wiki/%EC%98%81%ED%99%94-%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%98%B8%EC%B6%9C)
 
-### [영화 추천 함수 API](https://github.com/joneheart/3team_netflix_clonecoding_project/wiki/%EC%98%81%ED%99%94-%EC%B6%94%EC%B2%9C-%ED%95%A8%EC%88%98-API)
+### [영화 추천 함수 API](https://github.com/joneheart/3team_netflix_clonecoding_project/wiki/%EC%98%81%ED%99%94-%EA%B2%80%EC%83%89-%ED%95%A8%EC%88%98-API)
 
 ### [네이버 한국 영화 정보 크롤링](https://github.com/joong8812/naver-movies-info-scraper)
 
