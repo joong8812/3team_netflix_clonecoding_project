@@ -36,10 +36,10 @@ ___
 ![wireframe](https://user-images.githubusercontent.com/18342765/153375168-9ae0924f-ef3f-4b64-b713-ed79b0960fdc.png)
 
 ## DB 구성 (ERD) 💿
-<img width="736" alt="설날에뭐하지_ERD" src="https://user-images.githubusercontent.com/18342765/153375704-cdf7b12a-a740-4c70-a933-ff3962c4b118.png">
+<img width="736" alt="설날에뭐보지_ERD" src="https://user-images.githubusercontent.com/18342765/153517641-d35cc72c-100a-4a5e-bd64-c95aeb53f8d7.png">
 
 ## API 설계 💡
-<img width="899" alt="설날에뭐하지_API" src="https://user-images.githubusercontent.com/18342765/153376676-61b49591-7fb9-45fe-bc1d-608542d39aa8.png">
+<img width="900" alt="설날에뭐보지_API" src="https://user-images.githubusercontent.com/18342765/153517618-85803a2c-4623-4564-849d-6d5ab904ddd6.png">
 
 ## 개발 일정 🏃‍♀️🏃‍♂️
 <img width="620" alt="개발일정" src="https://user-images.githubusercontent.com/18342765/153376891-e6b16b22-9357-46fe-ab1f-18c04d089107.png">
